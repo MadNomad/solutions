@@ -11,7 +11,7 @@ namespace ConsoleApplications
     {
         public void Go()
         {
-            double kursEUR = 1; 
+            //double kursEUR = 1; 
             double kursUSD = 1.15; 
             double kursUAH = 28; 
             Console.Clear();

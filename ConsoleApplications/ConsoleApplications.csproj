@@ -34,6 +34,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,6 +51,14 @@
     <Compile Include="Exercise0007.cs" />
     <Compile Include="Exercise0008.cs" />
     <Compile Include="Exercise0009.cs" />
+    <Compile Include="Exercise0010.cs" />
+    <Compile Include="Exercise0011.cs" />
+    <Compile Include="Exercise0012.cs" />
+    <Compile Include="Exercise0013.cs" />
+    <Compile Include="Exercise0014.cs" />
+    <Compile Include="Exercise0015.cs" />
+    <Compile Include="Exercise0016.cs" />
+    <Compile Include="Exercise0017.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

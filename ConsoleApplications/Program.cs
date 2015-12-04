@@ -19,7 +19,7 @@ namespace ConsoleApplications
             Console.WriteLine();
             Console.ReadKey();
 
-           Exercise0009 test = new Exercise0009();
+           Exercise0017 test = new Exercise0017();
             test.Go();
             Console.ReadKey();
         }
