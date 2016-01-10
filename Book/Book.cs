@@ -4,31 +4,37 @@ namespace Book
 {
     public class Book
     {
-        Title _title = new Title();
-        Author _author = new Author();
-        Content _content = new Content();
+        Title title;
+        Author author;
+        Content content;
 
         public Book(string title, string author, string content)
         {
-            this._title.title = title;
-            this._author.author = author;
-            this._content.content = content;
+            this.title = new Title(title);
+            this.author = new Author(author);
+            this.content = new Content(content);
         }
 
 
         public void Show()
         {
-            _title.Show();
-            Console.Write("\t");
-            _author.Show();
-            Console.Write("\t");
-            _content.Show();
+            title.Show();
+            Console.WriteLine();
+            author.Show();
+            Console.WriteLine();
+            content.Show();
         }
     }
 
     public class Title
     {
         public string title;
+
+        public Title(string title)
+        {
+            this.title = title;
+        }
+        
         public void Show()
         {
             Console.ForegroundColor = ConsoleColor.DarkYellow;
@@ -40,6 +46,12 @@ namespace Book
     public class Author
     {
         public string author;
+
+        public Author(string author)
+        {
+            this.author = author;
+        }
+
         public void Show()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -51,6 +63,12 @@ namespace Book
     public class Content
     {
         public string content;
+
+        public Content(string content)
+        {
+            this.content = content;
+        }
+
         public void Show()
         {
             Console.ForegroundColor = ConsoleColor.White;
