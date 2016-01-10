@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApplications
 {
-    //    Класс понятен, но забача не корректна :)
+    //    Класс понятен, но задача не корректна :)
 
     public class Exercise0002
     {

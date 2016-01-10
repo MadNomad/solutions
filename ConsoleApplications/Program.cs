@@ -3,23 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using ConsoleApplications.Classes;
 
 namespace ConsoleApplications
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            string nameLast = "Ермолов";
-            string nameFist = "Сергей";
-            string nameMiddle = "Александрович";
-
-            Console.Write(nameLast + " " + nameFist + " " + nameMiddle);
-            Console.WriteLine();
-            Console.ReadKey();
-
-           Exercise0017 test = new Exercise0017();
+            Exercise0003 test = new Exercise0003();
             test.Go();
             Console.ReadKey();
         }
