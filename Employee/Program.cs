@@ -10,6 +10,10 @@ namespace Employee
     {
         static void Main(string[] args)
         {
+        	Employee newMan = new Employee("Thomas", "Amnet");
+        	newMan.Salary();
+        	
+        	Console.ReadKey();
         }
     }
 }

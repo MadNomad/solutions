@@ -16,15 +16,49 @@ namespace Invoice
         private double summ;
         private const int TaxFee = 20;
 
-        Invoice(int acc, string cust, string prov)
+        public Invoice(int acc, string cust, string prov)
         {
             account = acc;
             customer = cust;
             provider = prov;
         }
-        private 
+        
+    }
 
-        public 
+    class Item
+    {
+    	private int itemArt;
+    	private string itemName, itemPrice;
+    	public int itemQuantity;
+    	
+    	public Item (int art, string name, string price)
+    	{
+    		itemArt = art;
+    		itemName = name;
+    		itemPrice = price;
+    		itemQuantity = 0;
+    	}
+    	
+    }
+    
+    class Order
+    {
+    	int orderNum
+    	{
+    		get 
+    	}
+    	
+    	
+    	public int CreateOrder (Invoice invoice)
+    	{
+    		
+    	}
+    	
+    	public void AddItem (Item item, int quantity)
+    	{
+    		itemQuantity = quantity;
+    		item.itemQuantity = quantity;
+    	}
 
     }
 }
