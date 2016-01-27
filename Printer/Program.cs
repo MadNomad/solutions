@@ -14,11 +14,11 @@ namespace Printer
 		{
 			string message = "Hello World!";
 			
-			Printer newPrint = new Printer();
-			newPrint.Print(message);
-			
-			ColorPrinter colorPrint = newPrint as ColorPrinter;
+			Printer colorPrint = new ColorPrinter();
 			colorPrint.Print(message);
+			
+			ColorPrinter newPrint = colorPrint as ColorPrinter;
+			newPrint.Print(message);
 			
 			
 			Console.Write("Press any key to continue . . . ");

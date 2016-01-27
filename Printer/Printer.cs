@@ -13,18 +13,18 @@ namespace Printer
 	/// </summary>
 	public class Printer
 	{
-		public virtual void Print (string value)
+		public  void Print (string msg)
 		{
-			Console.WriteLine (value);
+			Console.WriteLine (msg);
 		}
 	}
 	
 	public class ColorPrinter : Printer
 	{
-		public override void Print(string value)
+		public  void Print(string msg)
 		{
 			Console.ForegroundColor = ConsoleColor.DarkYellow;
-			Console.WriteLine (value);
+			Console.WriteLine (msg);
 			Console.ResetColor();
 		}
 	}
