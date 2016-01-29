@@ -13,26 +13,24 @@ namespace Calculator
 	/// </summary>
 	public static class Calc
 	{
-		static double var1, var2;
-		
-		public static void Summ (double var1, double var2)
+		public static double Addition (double var1, double var2)
 		{
-			Console.WriteLine("{0} + {1} = " + (var1 + var2), var1, var2);
+			return (var1 + var2);
 		}
 
-		public static void Razn (double var1, double var2)
+		public static double Subtraction (double var1, double var2)
 		{
-			Console.WriteLine("{0} - {1} = " + (var1 - var2), var1, var2);
+			return (var1 - var2);
 		}
 
-		public static void Umn (double var1, double var2)
+		public static double Multiplication (double var1, double var2)
 		{
-			Console.WriteLine("{0} * {1} = " + (var1 * var2), var1, var2);
+			return (var1 * var2);
 		}
 
-		public static void Delen (double var1, double var2)
+		public static double Division (double var1, double var2)
 		{
-			Console.WriteLine("{0} / {1} = " + (var1 / var2), var1, var2);
+			return (var1 / var2);
 		}
 	}
 }

@@ -13,10 +13,10 @@ namespace Calculator
 		public static void Main(string[] args)
 		{
 			
-			Calc.Summ(3,3);
-			Calc.Razn(3,3);
-			Calc.Umn(3,3);
-			Calc.Delen(3,3);
+			Console.WriteLine(Calc.Addition(3,3));
+			Console.WriteLine(Calc.Subtraction(3,3));
+			Console.WriteLine(Calc.Multiplication(3,3));
+			Console.WriteLine(Calc.Division(3,3));
 			
 			Console.WriteLine();
 			Console.Write("Press any key to continue . . . ");
