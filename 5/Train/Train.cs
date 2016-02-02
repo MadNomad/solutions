@@ -26,15 +26,7 @@ namespace Train
 		
 		public void Show()
 		{
-			if (trainNum != 0)
-			{
 				Console.WriteLine("\t  {0}\t\t\t{1}\t\t\t{2}", trainNum, trainPointName, trainStartDate.ToString("d MMM yyyy"));
-			}
-			else
-			{
-				Console.WriteLine("\t\t\t    No trains in DataBase");
-				
-			}
 		}
 		
 		#region IComparable implementation

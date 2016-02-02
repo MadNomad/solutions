@@ -14,35 +14,6 @@ namespace Train
 	/// </summary>
 	public static class UIHelper
 	{
-		public static void Table (List<Train> database, int getItem = 0)
-		{
-			Console.Clear();
-			Console.WriteLine("   -----------------------------------------------------------------------");
-			Console.WriteLine("\tTrain number\t\tDestination\t\tDeparture time");
-			Console.WriteLine("   -----------------------------------------------------------------------");
-			Console.WriteLine("\n\n");
-			
-			if (database.Count == 0) {
-				Console.WriteLine("\t\t\t    No trains in DataBase");
-			}
-			else if (getItem != 0)
-			{
-				database.Find(x => x.trainNum.Equals(getItem)).Show();
-			}
-			else 
-			{
-				database.Sort();
-				foreach (var item in database) {
-					item.Show();
-				}
-			}
-
-			Console.WriteLine("\n\n");
-			Console.WriteLine("   -----------------------------------------------------------------------");
-			Console.WriteLine("\n\n");
-			Break();
-		}
-		
 		public static void Menu()
 		{
 			Console.Clear();
@@ -56,6 +27,23 @@ namespace Train
 			Console.WriteLine("\n\n");
 			Console.WriteLine("   -----------------------------------------------------------------------");
 			Console.WriteLine("\n\n");
+		}
+
+		public static void Header()
+		{
+			Console.Clear();
+			Console.WriteLine("   -----------------------------------------------------------------------");
+			Console.WriteLine("\tTrain number\t\tDestination\t\tDeparture time");
+			Console.WriteLine("   -----------------------------------------------------------------------");
+			Console.WriteLine("\n\n");
+		}
+
+		public static void Footer()
+		{
+			Console.WriteLine("\n\n");
+			Console.WriteLine("   -----------------------------------------------------------------------");
+			Console.WriteLine("\n\n");
+			Break();
 		}
 
 		public static void Break()
