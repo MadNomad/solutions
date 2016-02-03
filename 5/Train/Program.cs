@@ -22,11 +22,11 @@ namespace Train
 				int userChoise = UIHelper.GetInt();
 				switch (userChoise) {
 					case 1:
-						UIHelper.Table(database);
+						TableAll(database);
 						break;
 					case 2:
 						Console.Write("   Enter train <number>: ");
-						UIHelper.Table(database, UIHelper.GetInt());
+						TableItem(database, UIHelper.GetInt());
 						break;
 					case 3:
 						Console.Write("   Enter train's <number>: ");
@@ -35,7 +35,7 @@ namespace Train
 						string trainDest = Console.ReadLine();
 						Console.Write("   Enter train's <departure date>: ");
 						DateTime trainDate;
-						DateTime.TryParse(Console.ReadLine(), trainDate);
+						DateTime.TryParse(Console.ReadLine(), out trainDate);
 						database.Add(new Train(trainNum, trainDest, trainDate));
 						break;
 					case 0:
@@ -45,5 +45,34 @@ namespace Train
 				}
 			}
 		}
+		
+		public static void TableAll(List<Train> database)
+		{
+			UIHelper.Header();
+			if (database.Count == 0) {
+				Console.WriteLine("\t\t\t    No trains in DataBase");
+			} else {
+				database.Sort();
+				foreach (var item in database) {
+					item.Show();
+				}
+			}
+			UIHelper.Footer();
+		}
+		
+		public static void TableItem(List<Train> database, int getItem)
+		{
+			List<Train> trains = database.FindAll(x => x.trainNum.Equals(getItem));
+			UIHelper.Header();
+			if (trains.Count > 0) {
+				foreach (var item in trains) {
+					item.Show();
+				}
+			} else {
+				Console.WriteLine("\t\t\t    No trains in DataBase");
+			}
+			UIHelper.Footer();
+		}
+		
 	}
 }
