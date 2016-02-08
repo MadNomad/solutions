@@ -13,20 +13,42 @@ namespace AnonymousMethodExt
 	{
 		public static void Main(string[] args)
 		{
-			MyDelegate quickRnd = new MyDelegate(RndInt.Next());
-			List<MyDelegate> delegates = new List<MyDelegate>();
-			for (int i = 0; i < 10; i++) {
-				delegates.Add(new quickRnd());
-			}
-			int summ;
-			MyAverage average = delegate(delegates)
-			{
-				foreach (MyDelegate item in delegates)
+		    MyDelegate quickDelegate = delegate () 
+            {
+                return new Random().Next(1000);
+		    };
+
+            List<MyDelegate> delegates = new List<MyDelegate>();
+            for (int i = 0; i < 10; i++) {
+                delegates.Add(quickDelegate);
+            }
+            
+            MyAverage average = delegate(List<MyDelegate> delegates1)
+            {
+                int summ = 0;
+                foreach (MyDelegate item in delegates1)
 				{
-					summ += item;
+					summ += item.Invoke();
+//                    Console.WriteLine(item.Invoke());
 				}
-				return summ;
-			};
+				return summ/delegates.Count;
+            };
+
+            Console.WriteLine(average.Invoke(delegates));
+//			MyDelegate quickRnd = new MyDelegate(RndInt.Next());
+//			List<MyDelegate> delegates = new List<MyDelegate>();
+//			for (int i = 0; i < 10; i++) {
+//				delegates.Add(quickRnd);
+//			}
+//			int summ;
+//			MyAverage average = delegate()
+//			{
+//				foreach (MyDelegate item in delegates)
+//				{
+//					summ += item;
+//				}
+//				return summ;
+//			};
 			
 			Console.Write("Press any key to continue . . . ");
 			Console.ReadKey(true);
@@ -34,18 +56,10 @@ namespace AnonymousMethodExt
 	}
 	
 	#region Kitchen
-	public static class RndInt
-	{
-		public static int Next()
-		{
-			Random rnd = new Random();
-			return Convert.ToInt16(rnd.Next());
-		}
-	}
 
-	public delegate int MyDelegate();
-		
-	public delegate int MyAverage(List<MyDelegate> delegates);
+    public delegate int MyDelegate();
+
+    public delegate int MyAverage(List<MyDelegate> delegates);
 
 	#endregion
 }
