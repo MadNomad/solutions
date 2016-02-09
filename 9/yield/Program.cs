@@ -13,9 +13,10 @@ namespace yield
 	{
 		public static void Main(string[] args)
 		{
-			List<int> collection = new List<int>();
+			
 			int[] newArray = { 2, 5, 56, 1, 6, 10 };
-			collection = Even(newArray);
+			IEnumerable<int> collection = GetEven(newArray);
+			
 			foreach (var element in collection) {
 				Console.WriteLine(element);
 			}
@@ -24,16 +25,26 @@ namespace yield
 			Console.ReadKey(true);
 		}
 		
-		public static List<int> Even (int[] arr)
+		static IEnumerable<int> GetEven (int[] arr)
 		{
-			List<int> newlist = new List<int>();
 			for (int i = 0; i < arr.Length; i++) {
 				if (arr[i] % 2 == 0)
 				{
-					newlist.Add(arr[i]);
+					yield return arr[i];
 				}
 			}
-			return newlist;
 		}
+
+//		public static List<int> Even (int[] arr)
+//		{
+//			List<int> newlist = new List<int>();
+//			for (int i = 0; i < arr.Length; i++) {
+//				if (arr[i] % 2 == 0)
+//				{
+//					newlist.Add(arr[i]);
+//				}
+//			}
+//			return newlist;
+//		}
 	}
 }
