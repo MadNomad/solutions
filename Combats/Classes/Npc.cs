@@ -16,26 +16,28 @@ namespace Combats.Classes
 		Random rnd = new Random();
 		
 		
-		public Npc(string name = "Tyler", int hp = 100, int damage = 5)
+		public Npc(string name = "Tyler", int hp = 100, int maxHp = 100, int damage = 5)
 		{
 			Name = name;
 			Hp = hp;
+			MaxHp = maxHp;
 			Damage = damage;
 		}
 		
 		public BodyPart GenRandPart ()
 		{
-			return (BodyPart)rnd.Next(1, 4);
+            int items = Enum.GetNames(typeof(BodyPart)).Length;
+			return (BodyPart)rnd.Next(1, items);
 		}
 		
-		public override int GetHit()
+		public override int GetHit(BodyPart arg = 0)
 		{
-			return (int)GenRandPart();
+		    return (int)GenRandPart();
 		}
 		
-		public override int SetBlock()
+		public override int SetBlock(BodyPart arg = 0)
 		{
-			return (int)GenRandPart();
+		    return (int)GenRandPart();
 		}
 	}
 }

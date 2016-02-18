@@ -9,18 +9,20 @@ using Combats.Classes;
 
 namespace Combats
 {
-	/// <summary>
-	/// Description of IPlayer.
-	/// </summary>
-	public interface IPlayer
-	{
-		string Name {get; set;}
-		int Hp {get;set;}
-		int Damage {get;set;}
-		int GetHit (Player.BodyPart arg);
-		int SetBlock (Player.BodyPart arg);
-		event GameControl.PlayerStatus Wound;
-		event GameControl.PlayerStatus Block;
-		event GameControl.PlayerStatus Death;		
-	}
+    /// <summary>
+    /// Description of IPlayer.
+    /// </summary>
+    public interface IPlayer
+    {
+        string Name {get; set;}
+        bool IsHumanAttacker {get; set;}
+        int MaxHp {get;set;}
+        int Hp {get;set;}
+        int Damage {get;set;}
+        int GetHit (BodyPart arg);
+        int SetBlock (BodyPart arg);
+        event GameControl.PlayerStatus Wound;
+        event GameControl.PlayerStatus Block;
+        event GameControl.PlayerStatus Death;
+    }
 }

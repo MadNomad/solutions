@@ -8,64 +8,85 @@ using System;
 
 namespace Combats.Classes
 {
-	/// <summary>
-	/// Description of Player.
-	/// </summary>
-	public class Player : IPlayer
-	{
-		public event GameControl.PlayerStatus Wound;
+    /// <summary>
+    /// Description of Player.
+    /// </summary>
+    public class Player : IPlayer
+    {
+        public event GameControl.PlayerStatus Wound;
 
-		public event GameControl.PlayerStatus Block;
+        public event GameControl.PlayerStatus Block;
 
-		public event GameControl.PlayerStatus Death;
+        public event GameControl.PlayerStatus Death;
 
-		public enum BodyPart {None, Head, Body, Legs}
-		
+        
 //		public Player()
 //		{
 //		}
 
-		#region IPlayer implementation
+        #region IPlayer implementation
 
-		string name;
-		public string Name {
-			get {
-				return name;
-			}
-			set {
-				name = value;
-			}
-		}
+        string name;
+        public string Name {
+            get {
+                return name;
+            }
+            set {
+                name = value;
+            }
+        }
 
-		int hp;
-		public int Hp {
-			get {
-				return hp;
-			}
-			set {
-				hp = value;
-			}
-		}
+        bool isHumanAttacker;
+        public bool IsHumanAttacker {
+            get {
+                return isHumanAttacker;
+            }
+            set {
+                isHumanAttacker = value;
+            }
+        }
+        
+        int hp;
+        public int Hp {
+            get {
+                return hp;
+            }
+            set {
+                hp = value;
+            }
+        }
 
-		int damage;
-		public int Damage {
-			get {
-				return damage;
-			}
-			set {
-				damage = value;
-			}
-		}
+        int maxHp;
+        public int MaxHp {
+            get {
+                return maxHp;
+            }
+            set {
+                maxHp = value;
+            }
+        }
 
-		public virtual int GetHit(BodyPart arg)
-		{
-			throw new NotImplementedException();
-		}
-		public virtual int SetBlock(BodyPart arg)
-		{
-			throw new NotImplementedException();
-		}
-		#endregion
+        int damage;
+        public int Damage {
+            get {
+                return damage;
+            }
+            set {
+                damage = value;
+            }
+        }
 
-	}
+        public virtual int GetHit(BodyPart arg = 0)
+        {
+            return 1;
+            throw new NotImplementedException();
+        }
+        public virtual int SetBlock(BodyPart arg = 0)
+        {
+            return 1;
+            throw new NotImplementedException();
+        }
+        #endregion
+
+    }
 }
