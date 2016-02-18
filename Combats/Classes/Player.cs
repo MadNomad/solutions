@@ -76,14 +76,14 @@ namespace Combats.Classes
             }
         }
 
-        public virtual int GetHit(BodyPart arg = 0)
+        public virtual BodyPart GetHit(BodyPart arg = 0)
         {
-            return 1;
+            return 0;
             throw new NotImplementedException();
         }
-        public virtual int SetBlock(BodyPart arg = 0)
+        public virtual BodyPart SetBlock(BodyPart arg = 0)
         {
-            return 1;
+            return 0;
             throw new NotImplementedException();
         }
         #endregion

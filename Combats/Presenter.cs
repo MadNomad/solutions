@@ -32,15 +32,18 @@ namespace Combats
             this.game = new GameControl(name);
             app.labelPlayerName1.Text = game.human.Name;
             app.labelPlayerName2.Text = game.npc.Name;
+            app.linePlayerHP1.Maximum = game.human.Hp;
+            app.linePlayerHP2.Maximum = game.npc.Hp;
             RefreshHealthProgressBars();
             CreateRadioButtons();
             app.groupBattlePage.Visible = true;
             app.buttonNewGame.Visible = false;
         }
         
-        public void NextRound (string attackPoint, string blockPoint)
+        public void NextRound (BodyPart attackPoint, BodyPart blockPoint)
         {
             game.MakeRound (attackPoint, blockPoint);
+            RefreshHealthProgressBars();
         }
         
         public void ChangeName(string name)
@@ -57,21 +60,38 @@ namespace Combats
         /// </summary>
         public void RefreshHealthProgressBars()
         {
-            app.linePlayerHP1.Value = game.human.MaxHp / game.human.Hp * 100;
-            if (app.linePlayerHP1.Value < 30)
+            if (game.human.Hp >= 0)
+            {
+                app.linePlayerHP1.Value = game.human.Hp;
+            }
+            else
+            {
+                app.linePlayerHP1.Value = 0;
+            }
+            Int32 currentHumanLifePercent = app.linePlayerHP1.Value / app.linePlayerHP1.Maximum * 100;
+            if (currentHumanLifePercent < 30)
             {
                 app.linePlayerHP1.ForeColor = Color.Red;
             }
-            else if (app.linePlayerHP1.Value < 60)
+            else if (currentHumanLifePercent < 60)
             {
                 app.linePlayerHP1.ForeColor = Color.Yellow;
             }
-            app.linePlayerHP2.Value = game.npc.MaxHp / game.npc.Hp * 100;
-            if (app.linePlayerHP2.Value < 30)
+            
+            if (game.npc.Hp >= 0)
+            {
+                app.linePlayerHP2.Value = game.npc.Hp;
+            }
+            else
+            {
+                app.linePlayerHP2.Value = 0;
+            }
+            Int32 currentNpcLifePercent = app.linePlayerHP2.Value / app.linePlayerHP2.Maximum * 100;
+            if (currentNpcLifePercent < 30)
             {
                 app.linePlayerHP2.ForeColor = Color.Red;
             }
-            else if (app.linePlayerHP2.Value < 60)
+            else if (currentNpcLifePercent < 60)
             {
                 app.linePlayerHP2.ForeColor = Color.Yellow;
             }

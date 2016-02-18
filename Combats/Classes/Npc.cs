@@ -30,14 +30,14 @@ namespace Combats.Classes
 			return (BodyPart)rnd.Next(1, items);
 		}
 		
-		public override int GetHit(BodyPart arg = 0)
+		public override BodyPart GetHit(BodyPart arg = 0)
 		{
-		    return (int)GenRandPart();
+		    return GenRandPart();
 		}
 		
-		public override int SetBlock(BodyPart arg = 0)
+		public override BodyPart SetBlock(BodyPart arg = 0)
 		{
-		    return (int)GenRandPart();
+		    return GenRandPart();
 		}
 	}
 }

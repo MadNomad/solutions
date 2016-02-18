@@ -335,10 +335,12 @@ namespace Combats
             // 
             // linePlayerHP1
             // 
+            this.linePlayerHP1.ForeColor = System.Drawing.Color.Green;
             this.linePlayerHP1.Location = new System.Drawing.Point(59, 34);
             this.linePlayerHP1.Name = "linePlayerHP1";
-            this.linePlayerHP1.ForeColor = Color.Green;
             this.linePlayerHP1.Size = new System.Drawing.Size(128, 15);
+            this.linePlayerHP1.Step = 1;
+            this.linePlayerHP1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.linePlayerHP1.TabIndex = 18;
             // 
             // picturePlayerInfo1
@@ -355,10 +357,12 @@ namespace Combats
             // linePlayerHP2
             // 
             this.linePlayerHP2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.linePlayerHP2.ForeColor = System.Drawing.Color.Green;
             this.linePlayerHP2.Location = new System.Drawing.Point(592, 34);
             this.linePlayerHP2.Name = "linePlayerHP2";
-            this.linePlayerHP1.ForeColor = Color.Green;
             this.linePlayerHP2.Size = new System.Drawing.Size(128, 15);
+            this.linePlayerHP2.Step = 1;
+            this.linePlayerHP2.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.linePlayerHP2.TabIndex = 19;
             // 
             // picturePlayerInfo2

@@ -19,8 +19,8 @@ namespace Combats
         int MaxHp {get;set;}
         int Hp {get;set;}
         int Damage {get;set;}
-        int GetHit (BodyPart arg);
-        int SetBlock (BodyPart arg);
+        BodyPart GetHit (BodyPart arg);
+        BodyPart SetBlock (BodyPart arg);
         event GameControl.PlayerStatus Wound;
         event GameControl.PlayerStatus Block;
         event GameControl.PlayerStatus Death;
