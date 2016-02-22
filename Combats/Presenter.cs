@@ -193,6 +193,7 @@ namespace Combats
                 int n = 0;
                 foreach (var line in rating.OrderByDescending(kvp => kvp.Value))
                 {
+                    n++;
                     app.dataTopPlayesTable.Rows.Add(n, line.Key, line.Value);
                 }
                 app.dataTopPlayesTable.AllowUserToResizeRows = false;
