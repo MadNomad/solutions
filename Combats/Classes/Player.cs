@@ -19,72 +19,80 @@ namespace Combats.Classes
 
         public event GameControl.PlayerStatus Death;
 
-        
-//		public Player()
-//		{
-//		}
-
         #region IPlayer implementation
 
         string name;
-        public string Name {
-            get {
+        public string Name
+        {
+            get
+            {
                 return name;
             }
-            set {
+            set
+            {
                 name = value;
             }
         }
 
         bool isHumanAttacker;
-        public bool IsHumanAttacker {
-            get {
+        public bool IsHumanAttacker
+        {
+            get
+            {
                 return isHumanAttacker;
             }
-            set {
+            set
+            {
                 isHumanAttacker = value;
             }
         }
         
         int hp;
-        public int Hp {
-            get {
+        public int Hp
+        {
+            get
+            {
                 return hp;
             }
-            set {
+            set
+            {
                 hp = value;
             }
         }
 
         int maxHp;
-        public int MaxHp {
-            get {
+        public int MaxHp
+        {
+            get
+            {
                 return maxHp;
             }
-            set {
+            set
+            {
                 maxHp = value;
             }
         }
 
         int damage;
-        public int Damage {
-            get {
+        public int Damage
+        {
+            get
+            {
                 return damage;
             }
-            set {
+            set
+            {
                 damage = value;
             }
         }
 
         public virtual BodyPart GetHit(BodyPart arg = 0)
         {
-            return 0;
-            throw new NotImplementedException();
+            return arg;
         }
         public virtual BodyPart SetBlock(BodyPart arg = 0)
         {
-            return 0;
-            throw new NotImplementedException();
+            return arg;
         }
         #endregion
 

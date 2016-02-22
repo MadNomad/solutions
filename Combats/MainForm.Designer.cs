@@ -14,31 +14,32 @@ namespace Combats
         /// </summary>
         public System.ComponentModel.IContainer components = null;
         public System.Windows.Forms.RichTextBox richBattleLog;
-        public System.Windows.Forms.PictureBox picturePlayer1;
+        private System.Windows.Forms.PictureBox picturePlayer1;
         public System.Windows.Forms.PictureBox picturePlayerInfo1;
         public System.Windows.Forms.Label labelPlayerName2;
-        public System.Windows.Forms.PictureBox picturePlayer2;
+        private System.Windows.Forms.PictureBox picturePlayer2;
         public System.Windows.Forms.PictureBox picturePlayerInfo2;
         public System.Windows.Forms.ProgressBar linePlayerHP2;
-        public System.Windows.Forms.Panel panel1;
-        public System.Windows.Forms.Panel panel2;
-        public System.Windows.Forms.Label labelAttackPanel;
-        public System.Windows.Forms.Label labelBlockPanel;
+        public System.Windows.Forms.Panel panelAttack;
+        public System.Windows.Forms.Panel panelBlock;
+        private System.Windows.Forms.Label labelAttackPanel;
+        private System.Windows.Forms.Label labelBlockPanel;
         public System.Windows.Forms.Button buttonRound;
         public System.Windows.Forms.Button buttonNewGame;
-        public System.Windows.Forms.Label label1;
-        public System.Windows.Forms.TextBox textPlayerName1;
         public System.Windows.Forms.GroupBox groupStartPage;
         public System.Windows.Forms.GroupBox groupBattlePage;
+        private System.Windows.Forms.TextBox textPlayerName1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Place;
         private System.Windows.Forms.DataGridViewTextBoxColumn PlayerName;
         public System.Windows.Forms.Label labelPlayerName1;
         public System.Windows.Forms.ProgressBar linePlayerHP1;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureStartLogo;
         private System.Windows.Forms.Button buttonStartGame;
         private System.Windows.Forms.Label labelTopPlayers;
         public System.Windows.Forms.DataGridView dataTopPlayesTable;
         public System.Windows.Forms.Panel panelRadioButtons;
+        public System.Windows.Forms.Label labelRoundResult;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Wins;
         
         /// <summary>
         /// Disposes resources used by the form.
@@ -46,8 +47,10 @@ namespace Combats
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing) {
-                if (components != null) {
+            if (disposing)
+            {
+                if (components != null)
+                {
                     components.Dispose();
                 }
             }
@@ -65,20 +68,17 @@ namespace Combats
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.textPlayerName1 = new System.Windows.Forms.TextBox();
             this.groupStartPage = new System.Windows.Forms.GroupBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureStartLogo = new System.Windows.Forms.PictureBox();
             this.buttonStartGame = new System.Windows.Forms.Button();
             this.dataTopPlayesTable = new System.Windows.Forms.DataGridView();
-            this.Place = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PlayerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.labelTopPlayers = new System.Windows.Forms.Label();
             this.groupBattlePage = new System.Windows.Forms.GroupBox();
             this.panelRadioButtons = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.panelAttack = new System.Windows.Forms.Panel();
+            this.panelBlock = new System.Windows.Forms.Panel();
             this.labelAttackPanel = new System.Windows.Forms.Label();
             this.buttonRound = new System.Windows.Forms.Button();
             this.labelBlockPanel = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.buttonNewGame = new System.Windows.Forms.Button();
             this.linePlayerHP1 = new System.Windows.Forms.ProgressBar();
             this.picturePlayerInfo1 = new System.Windows.Forms.PictureBox();
@@ -89,8 +89,12 @@ namespace Combats
             this.labelPlayerName2 = new System.Windows.Forms.Label();
             this.picturePlayer1 = new System.Windows.Forms.PictureBox();
             this.richBattleLog = new System.Windows.Forms.RichTextBox();
+            this.labelRoundResult = new System.Windows.Forms.Label();
+            this.Place = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PlayerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Wins = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupStartPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureStartLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTopPlayesTable)).BeginInit();
             this.groupBattlePage.SuspendLayout();
             this.panelRadioButtons.SuspendLayout();
@@ -113,10 +117,10 @@ namespace Combats
             // 
             // groupStartPage
             // 
-            this.groupStartPage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupStartPage.Controls.Add(this.pictureBox1);
+            this.groupStartPage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                                                                                | System.Windows.Forms.AnchorStyles.Left)
+                                                                               | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupStartPage.Controls.Add(this.pictureStartLogo);
             this.groupStartPage.Controls.Add(this.buttonStartGame);
             this.groupStartPage.Controls.Add(this.dataTopPlayesTable);
             this.groupStartPage.Controls.Add(this.textPlayerName1);
@@ -129,16 +133,16 @@ namespace Combats
             this.groupStartPage.TabIndex = 13;
             this.groupStartPage.TabStop = false;
             // 
-            // pictureBox1
+            // pictureStartLogo
             // 
-            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(193, 11);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(428, 217);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 12;
-            this.pictureBox1.TabStop = false;
+            this.pictureStartLogo.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.pictureStartLogo.Image = ((System.Drawing.Image)(resources.GetObject("pictureStartLogo.Image")));
+            this.pictureStartLogo.Location = new System.Drawing.Point(193, 11);
+            this.pictureStartLogo.Name = "pictureStartLogo";
+            this.pictureStartLogo.Size = new System.Drawing.Size(428, 217);
+            this.pictureStartLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureStartLogo.TabIndex = 12;
+            this.pictureStartLogo.TabStop = false;
             // 
             // buttonStartGame
             // 
@@ -167,32 +171,15 @@ namespace Combats
             this.dataTopPlayesTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataTopPlayesTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataTopPlayesTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Place,
-            this.PlayerName});
+                                                         this.Place,
+                                                         this.PlayerName,
+                                                         this.Wins});
             this.dataTopPlayesTable.Location = new System.Drawing.Point(89, 257);
             this.dataTopPlayesTable.Name = "dataTopPlayesTable";
             this.dataTopPlayesTable.ReadOnly = true;
             this.dataTopPlayesTable.RowHeadersVisible = false;
             this.dataTopPlayesTable.Size = new System.Drawing.Size(600, 241);
             this.dataTopPlayesTable.TabIndex = 2;
-            // 
-            // Place
-            // 
-            this.Place.FillWeight = 12.51555F;
-            this.Place.HeaderText = "Место";
-            this.Place.MinimumWidth = 20;
-            this.Place.Name = "Place";
-            this.Place.ReadOnly = true;
-            this.Place.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Place.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // PlayerName
-            // 
-            this.PlayerName.FillWeight = 110.7626F;
-            this.PlayerName.HeaderText = "Имя игрока";
-            this.PlayerName.Name = "PlayerName";
-            this.PlayerName.ReadOnly = true;
-            this.PlayerName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // labelTopPlayers
             // 
@@ -207,11 +194,10 @@ namespace Combats
             // 
             // groupBattlePage
             // 
-            this.groupBattlePage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBattlePage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                                                                                 | System.Windows.Forms.AnchorStyles.Left)
+                                                                                | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBattlePage.Controls.Add(this.panelRadioButtons);
-            this.groupBattlePage.Controls.Add(this.label1);
             this.groupBattlePage.Controls.Add(this.buttonNewGame);
             this.groupBattlePage.Controls.Add(this.linePlayerHP1);
             this.groupBattlePage.Controls.Add(this.picturePlayerInfo1);
@@ -222,6 +208,7 @@ namespace Combats
             this.groupBattlePage.Controls.Add(this.labelPlayerName2);
             this.groupBattlePage.Controls.Add(this.picturePlayer1);
             this.groupBattlePage.Controls.Add(this.richBattleLog);
+            this.groupBattlePage.Controls.Add(this.labelRoundResult);
             this.groupBattlePage.Location = new System.Drawing.Point(1, 0);
             this.groupBattlePage.Margin = new System.Windows.Forms.Padding(0);
             this.groupBattlePage.Name = "groupBattlePage";
@@ -235,8 +222,8 @@ namespace Combats
             // 
             this.panelRadioButtons.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panelRadioButtons.AutoSize = true;
-            this.panelRadioButtons.Controls.Add(this.panel1);
-            this.panelRadioButtons.Controls.Add(this.panel2);
+            this.panelRadioButtons.Controls.Add(this.panelAttack);
+            this.panelRadioButtons.Controls.Add(this.panelBlock);
             this.panelRadioButtons.Controls.Add(this.labelAttackPanel);
             this.panelRadioButtons.Controls.Add(this.buttonRound);
             this.panelRadioButtons.Controls.Add(this.labelBlockPanel);
@@ -246,29 +233,29 @@ namespace Combats
             this.panelRadioButtons.Size = new System.Drawing.Size(240, 180);
             this.panelRadioButtons.TabIndex = 27;
             // 
-            // panel1
+            // panelAttack
             // 
-            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.panel1.AutoSize = true;
-            this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel1.Location = new System.Drawing.Point(3, 53);
-            this.panel1.MinimumSize = new System.Drawing.Size(114, 122);
-            this.panel1.Name = "panel1";
-            this.panel1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.panel1.Size = new System.Drawing.Size(114, 122);
-            this.panel1.TabIndex = 21;
+            this.panelAttack.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.panelAttack.AutoSize = true;
+            this.panelAttack.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panelAttack.Location = new System.Drawing.Point(3, 53);
+            this.panelAttack.MinimumSize = new System.Drawing.Size(114, 122);
+            this.panelAttack.Name = "panelAttack";
+            this.panelAttack.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.panelAttack.Size = new System.Drawing.Size(114, 122);
+            this.panelAttack.TabIndex = 21;
             // 
-            // panel2
+            // panelBlock
             // 
-            this.panel2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.panel2.AutoSize = true;
-            this.panel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel2.Location = new System.Drawing.Point(123, 53);
-            this.panel2.MinimumSize = new System.Drawing.Size(114, 122);
-            this.panel2.Name = "panel2";
-            this.panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.panel2.Size = new System.Drawing.Size(114, 122);
-            this.panel2.TabIndex = 20;
+            this.panelBlock.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.panelBlock.AutoSize = true;
+            this.panelBlock.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panelBlock.Location = new System.Drawing.Point(123, 53);
+            this.panelBlock.MinimumSize = new System.Drawing.Size(114, 122);
+            this.panelBlock.Name = "panelBlock";
+            this.panelBlock.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.panelBlock.Size = new System.Drawing.Size(114, 122);
+            this.panelBlock.TabIndex = 20;
             // 
             // labelAttackPanel
             // 
@@ -307,19 +294,6 @@ namespace Combats
             this.labelBlockPanel.Text = "Блок";
             this.labelBlockPanel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.label1.Font = new System.Drawing.Font("Segoe Print", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(273, 260);
-            this.label1.MaximumSize = new System.Drawing.Size(234, 40);
-            this.label1.MinimumSize = new System.Drawing.Size(234, 40);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(234, 40);
-            this.label1.TabIndex = 26;
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // buttonNewGame
             // 
             this.buttonNewGame.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -332,6 +306,7 @@ namespace Combats
             this.buttonNewGame.Text = "Новый бой";
             this.buttonNewGame.UseVisualStyleBackColor = true;
             this.buttonNewGame.Visible = false;
+            this.buttonNewGame.Click += new System.EventHandler(this.ButtonNewGameClick);
             // 
             // linePlayerHP1
             // 
@@ -425,13 +400,52 @@ namespace Combats
             // 
             // richBattleLog
             // 
-            this.richBattleLog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.richBattleLog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                                                                              | System.Windows.Forms.AnchorStyles.Right)));
             this.richBattleLog.Location = new System.Drawing.Point(11, 341);
             this.richBattleLog.Name = "richBattleLog";
             this.richBattleLog.Size = new System.Drawing.Size(759, 200);
             this.richBattleLog.TabIndex = 11;
             this.richBattleLog.Text = "";
+            this.richBattleLog.TextChanged += new System.EventHandler(this.richBattleLogTextChanged);
+            // 
+            // labelRoundResult
+            // 
+            this.labelRoundResult.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.labelRoundResult.Font = new System.Drawing.Font("Buxton Sketch", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelRoundResult.ForeColor = System.Drawing.Color.Red;
+            this.labelRoundResult.Location = new System.Drawing.Point(270, 88);
+            this.labelRoundResult.Name = "labelRoundResult";
+            this.labelRoundResult.Size = new System.Drawing.Size(240, 126);
+            this.labelRoundResult.TabIndex = 28;
+            this.labelRoundResult.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // Place
+            // 
+            this.Place.FillWeight = 10.28714F;
+            this.Place.HeaderText = "Место";
+            this.Place.MinimumWidth = 20;
+            this.Place.Name = "Place";
+            this.Place.ReadOnly = true;
+            this.Place.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Place.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // PlayerName
+            // 
+            this.PlayerName.FillWeight = 91.04116F;
+            this.PlayerName.HeaderText = "Имя игрока";
+            this.PlayerName.Name = "PlayerName";
+            this.PlayerName.ReadOnly = true;
+            this.PlayerName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Wins
+            // 
+            this.Wins.FillWeight = 20F;
+            this.Wins.HeaderText = "Побед";
+            this.Wins.Name = "Wins";
+            this.Wins.ReadOnly = true;
+            this.Wins.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Wins.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // MainForm
             // 
@@ -447,7 +461,7 @@ namespace Combats
             this.Text = "Бойцовский клуб";
             this.groupStartPage.ResumeLayout(false);
             this.groupStartPage.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureStartLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTopPlayesTable)).EndInit();
             this.groupBattlePage.ResumeLayout(false);
             this.groupBattlePage.PerformLayout();

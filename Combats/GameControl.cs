@@ -5,65 +5,48 @@
  * Time: 11:57
  */
 using System;
+using System.Collections.Generic;
 using Combats.Classes;
 using System.Windows.Forms;
+using System.Collections;
 
 namespace Combats
 {
     /// <summary>
     /// Description of GameControl.
     /// </summary>
-    public enum BodyPart {None, Head, Body, Legs}
-    
-    public class GameControl
+    public enum BodyPart
     {
-        public delegate void PlayerStatus (string name, int xp, int damage);
+        None,
+        Head,
+        Body,
+        Legs
+    }
+    
+    public partial class GameControl
+    {
+        public delegate void PlayerStatus(string name, int hp, int damage);
 
-        public IPlayer human;
-        public IPlayer npc;
+        public IPlayer Human;
+        public IPlayer Npc;
+        public List<Message> Log = new List<Message>();
 
         public GameControl(string name)
         {
-            human = new Human(name);
-            npc = new Npc();
+            Human = new Human(name);
+            Npc = new Npc();
 //			human
 
         }
         
-        public void ChangeName (string name)
+        protected void GetPrize(IPlayer player)
         {
-            human.Name = name;
+            //            TODO Реализовать получение опыта/уровня.
         }
         
-        public void MakeRound (BodyPart attackPoint, BodyPart blockPoint)
+        public void ChangeName(string name)
         {
-//		TODO: Реализовать раунд
-            if (human.IsHumanAttacker)
-            {
-                if ( !attackPoint.Equals(npc.SetBlock) )
-                {
-                    npc.Hp -= human.Damage;
-                }
-                if (!blockPoint.Equals(npc.GetHit))
-                {
-                    human.Hp -= npc.Damage;
-                }
-                human.IsHumanAttacker = false;
-            }
-            else
-            {
-                if (!blockPoint.Equals(npc.GetHit))
-                {
-                    human.Hp -= npc.Damage;
-                }
-                if (!attackPoint.Equals(npc.SetBlock))
-                {
-                    npc.Hp -= human.Damage;
-                }
-                human.IsHumanAttacker = true;
-            }
-            //            human.Hp = human.Hp - 5;
-            //            npc.Hp = npc.Hp - 7;
+            Human.Name = name;
         }
     }
 }

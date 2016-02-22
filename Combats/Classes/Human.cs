@@ -15,13 +15,13 @@ namespace Combats.Classes
     {
         public bool isHumanAttacker;
         
-        public Human(string name = "Jack", int hp = 100, int maxHp = 100, int damage = 5)
+        public Human(string name = "Jack", int hp = 100, int maxHp = 100, int damage = 15)
         {
             Name = name;
             Hp = hp;
             MaxHp = maxHp;
             Damage = damage;
-            isHumanAttacker = true;
+            IsHumanAttacker = true;
         }
     }
 }

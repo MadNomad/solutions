@@ -7,10 +7,9 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using Combats.Classes;
-using System.Drawing;
-using System.Linq;
 
 namespace Combats
 {
@@ -29,14 +28,8 @@ namespace Combats
             presenter = new Presenter(this);
             
             //
-            // TODO: Add constructor code after the InitializeComponent() call.
+            // Add constructor code after the InitializeComponent() call.
             //
-        }
-        void ButtonChangeName1Click(object sender, EventArgs e)
-        {
-            
-            presenter.ChangeName(this.textPlayerName1.Text);
-            
         }
         void ButtonStartGameClick(object sender, EventArgs e)
         {
@@ -44,37 +37,47 @@ namespace Combats
         }
         void ButtonNewGameClick(object sender, EventArgs e)
         {
+            this.panelRadioButtons.Visible = true;
+            this.buttonNewGame.Visible = false;
+            this.richBattleLog.Clear();
             presenter.StartNewGame(this.labelPlayerName1.Text);
         }
         void ButtonRoundClick(object sender, EventArgs e)
         {
-            this.panel1.BackColor = Color.Empty;
-            this.panel2.BackColor = Color.Empty;
+            this.panelAttack.BackColor = Color.Empty;
+            this.panelBlock.BackColor = Color.Empty;
             string attackPoint = null;
             string blockPoint = null;
 
-            if (this.panel1.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked) != null)
+            if (this.panelAttack.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked) != null)
             {
-                attackPoint = this.panel1.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked).Text;
+                attackPoint = this.panelAttack.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked).Text;
             }
             else
             {
-                this.panel1.BackColor = Color.IndianRed;
+                this.panelAttack.BackColor = Color.IndianRed;
             }
-            if (this.panel2.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked) != null)
+            if (this.panelBlock.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked) != null)
             {
-                blockPoint = this.panel2.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked).Text;
+                blockPoint = this.panelBlock.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked).Text;
             }
             else
             {
-                this.panel2.BackColor = Color.IndianRed;
+                this.panelBlock.BackColor = Color.IndianRed;
             }
-            if (!String.IsNullOrEmpty(attackPoint)  && !String.IsNullOrEmpty(blockPoint))
+            if (!String.IsNullOrEmpty(attackPoint) && !String.IsNullOrEmpty(blockPoint))
             {
-                this.panel1.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked).Checked = false;
-                this.panel2.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked).Checked = false;
-                presenter.NextRound (attackPoint, blockPoint);
+                this.panelAttack.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked).Checked = false;
+                this.panelBlock.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked).Checked = false;
+                presenter.NextRound(attackPoint, blockPoint);
             }
+        }
+        private void richBattleLogTextChanged(object sender, EventArgs e)
+        {
+            // Set the current caret position at the end
+            richBattleLog.SelectionStart = richBattleLog.Text.Length;
+            // Now scroll it automatically
+            richBattleLog.ScrollToCaret();
         }
     }
 }

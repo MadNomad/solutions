@@ -8,36 +8,36 @@ using System;
 
 namespace Combats.Classes
 {
-	/// <summary>
-	/// Description of Npc.
-	/// </summary>
-	public class Npc : Player
-	{
-		Random rnd = new Random();
-		
-		
-		public Npc(string name = "Tyler", int hp = 100, int maxHp = 100, int damage = 5)
-		{
-			Name = name;
-			Hp = hp;
-			MaxHp = maxHp;
-			Damage = damage;
-		}
-		
-		public BodyPart GenRandPart ()
-		{
+    /// <summary>
+    /// Description of Npc.
+    /// </summary>
+    public class Npc : Player
+    {
+        Random rnd = new Random();
+        
+        
+        public Npc(string name = "Tyler", int hp = 100, int maxHp = 100, int damage = 15)
+        {
+            Name = name;
+            Hp = hp;
+            MaxHp = maxHp;
+            Damage = damage;
+        }
+        
+        public BodyPart GenRandPart()
+        {
             int items = Enum.GetNames(typeof(BodyPart)).Length;
-			return (BodyPart)rnd.Next(1, items);
-		}
-		
-		public override BodyPart GetHit(BodyPart arg = 0)
-		{
-		    return GenRandPart();
-		}
-		
-		public override BodyPart SetBlock(BodyPart arg = 0)
-		{
-		    return GenRandPart();
-		}
-	}
+            return (BodyPart)rnd.Next(1, items);
+        }
+        
+        public override BodyPart GetHit(BodyPart arg = 0)
+        {
+            return GenRandPart();
+        }
+        
+        public override BodyPart SetBlock(BodyPart arg = 0)
+        {
+            return GenRandPart();
+        }
+    }
 }

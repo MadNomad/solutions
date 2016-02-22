@@ -14,13 +14,13 @@ namespace Combats
     /// </summary>
     public interface IPlayer
     {
-        string Name {get; set;}
-        bool IsHumanAttacker {get; set;}
-        int MaxHp {get;set;}
-        int Hp {get;set;}
-        int Damage {get;set;}
-        BodyPart GetHit (BodyPart arg);
-        BodyPart SetBlock (BodyPart arg);
+        string Name { get; set; }
+        bool IsHumanAttacker { get; set; }
+        int MaxHp { get; set; }
+        int Hp { get; set; }
+        int Damage { get; set; }
+        BodyPart GetHit(BodyPart arg);
+        BodyPart SetBlock(BodyPart arg);
         event GameControl.PlayerStatus Wound;
         event GameControl.PlayerStatus Block;
         event GameControl.PlayerStatus Death;
