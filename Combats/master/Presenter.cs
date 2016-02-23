@@ -237,34 +237,33 @@ namespace Combats
         
         void CreateRadioButtons()
         {
-            int items = Enum.GetNames(typeof(BodyPart)).Length;
+            NewRadioButtonPanel("Attack");
+            NewRadioButtonPanel("Block");
             
-            RadioButton[] panelAttackChoise = new RadioButton[items];
-            for (int i = 1, point = 4; i < panelAttackChoise.Length; point += 30, i++)
-            {
-                panelAttackChoise[i] = new System.Windows.Forms.RadioButton();
-                panelAttackChoise[i].Location = new System.Drawing.Point(4, point);
-                panelAttackChoise[i].Name = "radioAttack" + i;
-                panelAttackChoise[i].Size = new System.Drawing.Size(107, 24);
-                panelAttackChoise[i].TabIndex = 0;
-                panelAttackChoise[i].TabStop = true;
-                panelAttackChoise[i].Text = Enum.GetName(typeof(BodyPart), i);
-                panelAttackChoise[i].UseVisualStyleBackColor = true;
-                app.panelAttack.Controls.Add(panelAttackChoise[i]);
-            }
+        }
 
-            RadioButton[] panelBlockChoise = new RadioButton[items];
-            for (int i = 1, point = 4; i < panelBlockChoise.Length; point += 30, i++)
+        void NewRadioButtonPanel(string type)
+        {
+            int items = Enum.GetNames(typeof(BodyPart)).Length;
+            RadioButton[] newPanel = new RadioButton[items];
+            for (int i = 1, point = 4; i < newPanel.Length; point += 30, i++)
             {
-                panelBlockChoise[i] = new System.Windows.Forms.RadioButton();
-                panelBlockChoise[i].Location = new System.Drawing.Point(4, point);
-                panelBlockChoise[i].Name = "radioAttack" + i;
-                panelBlockChoise[i].Size = new System.Drawing.Size(107, 24);
-                panelBlockChoise[i].TabIndex = 0;
-                panelBlockChoise[i].TabStop = true;
-                panelBlockChoise[i].Text = Enum.GetName(typeof(BodyPart), i);
-                panelBlockChoise[i].UseVisualStyleBackColor = true;
-                app.panelBlock.Controls.Add(panelBlockChoise[i]);
+                newPanel[i] = new System.Windows.Forms.RadioButton();
+                newPanel[i].Location = new System.Drawing.Point(4, point);
+                newPanel[i].Name = "radio" + type + i;
+                newPanel[i].Size = new System.Drawing.Size(107, 24);
+                newPanel[i].TabIndex = 0;
+                newPanel[i].TabStop = true;
+                newPanel[i].Text = Enum.GetName(typeof(BodyPart), i);
+                newPanel[i].UseVisualStyleBackColor = true;
+                if (type == "Attack")
+                {
+                    app.panelAttack.Controls.Add(newPanel[i]);
+                }
+                else if (type == "Block")
+                {
+                    app.panelBlock.Controls.Add(newPanel[i]);
+                }
             }
         }
     }
