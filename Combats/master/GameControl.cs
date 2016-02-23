@@ -6,6 +6,7 @@
  */
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using Combats.Classes;
 using System.Windows.Forms;
 using System.Collections;
@@ -18,8 +19,11 @@ namespace Combats
     public enum BodyPart
     {
         None,
+        [Description("Голова")]
         Head,
+        [Description("Корпус")]
         Body,
+        [Description("Ноги")]
         Legs
     }
     
@@ -35,8 +39,6 @@ namespace Combats
         {
             Human = new Human(name);
             Npc = new Npc();
-//			human
-
         }
         
         protected void GetPrize(IPlayer player)
@@ -126,26 +128,6 @@ namespace Combats
             Log.Add(new Message(action, DateTime.Now, Npc.Name, Human.Name, Human.Damage));
         }
 
-        void NewMethod()
-        {
-            if (Human.Hp <= 0 && Npc.Hp <= 0)
-            {
-                Log.Add(new Message(RoundAction.draw, DateTime.Now));
-            }
-            else if (Human.Hp <= 0)
-            {
-                Log.Add(new Message(RoundAction.dead, DateTime.Now, Human.Name));
-                Log.Add(new Message(RoundAction.win, DateTime.Now, Npc.Name));
-                GetPrize(Npc);
-            }
-            else if (Npc.Hp <= 0)
-            {
-                Log.Add(new Message(RoundAction.dead, DateTime.Now, Npc.Name));
-                Log.Add(new Message(RoundAction.win, DateTime.Now, Human.Name));
-                GetPrize(Human);
-            }
-        }
-        
         public void ChangeName(string name)
         {
             Human.Name = name;

@@ -33,6 +33,15 @@ namespace Combats
         }
         void ButtonStartGameClick(object sender, EventArgs e)
         {
+            if (this.textPlayerName1.Text == "")
+            {
+                this.textPlayerName1.BackColor = Color.IndianRed;
+                return;
+            }
+            else
+            {
+                this.textPlayerName1.BackColor = Color.Empty;
+            }
             presenter.StartNewGame(this.textPlayerName1.Text);
         }
         void ButtonNewGameClick(object sender, EventArgs e)
@@ -44,33 +53,52 @@ namespace Combats
         }
         void ButtonRoundClick(object sender, EventArgs e)
         {
-            this.panelAttack.BackColor = Color.Empty;
-            this.panelBlock.BackColor = Color.Empty;
-            string attackPoint = null;
-            string blockPoint = null;
+            string attackPoint = InspectRadioButtons("Attack");
+            string blockPoint = InspectRadioButtons("Block");
 
-            if (this.panelAttack.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked) != null)
-            {
-                attackPoint = this.panelAttack.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked).Text;
-            }
-            else
-            {
-                this.panelAttack.BackColor = Color.IndianRed;
-            }
-            if (this.panelBlock.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked) != null)
-            {
-                blockPoint = this.panelBlock.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked).Text;
-            }
-            else
-            {
-                this.panelBlock.BackColor = Color.IndianRed;
-            }
             if (!String.IsNullOrEmpty(attackPoint) && !String.IsNullOrEmpty(blockPoint))
             {
-                this.panelAttack.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked).Checked = false;
-                this.panelBlock.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked).Checked = false;
+                ResetCheckedRadioButtons();
                 presenter.NextRound(attackPoint, blockPoint);
             }
+        }
+        string InspectRadioButtons(string action)
+        {
+            if (action == "Attack")
+            {
+                if (this.panelAttack.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked) != null)
+                {
+                    this.panelAttack.BackColor = Color.Empty;
+                    return this.panelAttack.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked).Text; 
+                }
+                else
+                {
+                    this.panelAttack.BackColor = Color.IndianRed;
+                    return null;
+                }
+            }
+            else if (action == "Block")
+            {
+                if (this.panelBlock.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked) != null)
+                {
+                    this.panelBlock.BackColor = Color.Empty;
+                    return this.panelBlock.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked).Text;
+                }
+                else
+                {
+                    this.panelBlock.BackColor = Color.IndianRed;
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
+        void ResetCheckedRadioButtons()
+        {
+            this.panelAttack.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked).Checked = false;
+            this.panelBlock.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked).Checked = false;
         }
         private void richBattleLogTextChanged(object sender, EventArgs e)
         {

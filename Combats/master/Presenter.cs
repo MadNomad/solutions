@@ -239,7 +239,6 @@ namespace Combats
         {
             NewRadioButtonPanel("Attack");
             NewRadioButtonPanel("Block");
-            
         }
 
         void NewRadioButtonPanel(string type)
