@@ -56,8 +56,8 @@ namespace Combats
                 game.MakeRound(
                     (BodyPart)Enum.Parse(typeof(BodyPart), attackPoint),
                     (BodyPart)Enum.Parse(typeof(BodyPart), blockPoint)
-                   )
-               );
+                )
+            );
             RefreshHealthProgressBars();
         }
         
@@ -156,32 +156,43 @@ namespace Combats
         
         void IncreaseWinsInTable(string name)
         {
-            bool newPlayer = false;
-            foreach (var record in rating)
+            if (CheckFileExist(ratingFilePath))
             {
-                if (record.Key == name)
+                bool newPlayer = false;
+                foreach (var record in rating)
                 {
-                    newPlayer = false;
+                    if (record.Key == name)
+                    {
+                        newPlayer = false;
+                    }
+                    else
+                    {
+                        newPlayer = true;
+                    }
+                }
+                if (!newPlayer)
+                {
+                    rating[name] += 1;
                 }
                 else
                 {
-                    newPlayer = true;
+                    rating.Add(name, 1);
                 }
-            }
-            if (newPlayer)
-            {
-                rating.Add(name, 1);
             }
             else
             {
-                rating[name] += 1;
+                using (File.Create(ratingFilePath))
+                {
+                }
+                rating = new Dictionary<string, int>();
+                rating.Add(name, 1);
             }
             SaveRecordsTableToFile();
         }
         
         void ShowRecordsInTable()
         {
-            if (File.Exists(ratingFilePath))
+            if (CheckFileExist(ratingFilePath))
             {
                 rating = new Dictionary<string, int>();
                 var file = File.ReadAllLines(ratingFilePath, Encoding.UTF8);
@@ -202,6 +213,17 @@ namespace Combats
             }
         }
         
+        bool CheckFileExist(string file)
+        {
+            if (!File.Exists(file))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
         void SaveRecordsTableToFile()
         {
             using (StreamWriter sw = new StreamWriter(ratingFilePath))

@@ -15,7 +15,7 @@ namespace Combats.Classes
     {
         public bool isHumanAttacker;
         
-        public Human(string name = "Jack", int hp = 100, int maxHp = 100, int damage = 15)
+        public Human(string name = "Jack", int hp = 100, int maxHp = 100, int damage = 25)
         {
             Name = name;
             Hp = hp;

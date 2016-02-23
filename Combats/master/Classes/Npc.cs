@@ -16,7 +16,7 @@ namespace Combats.Classes
         Random rnd = new Random();
         
         
-        public Npc(string name = "Tyler", int hp = 100, int maxHp = 100, int damage = 15)
+        public Npc(string name = "Tyler", int hp = 100, int maxHp = 100, int damage = 25)
         {
             Name = name;
             Hp = hp;

@@ -69,13 +69,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Battle.cs" />
     <Compile Include="Classes\Human.cs" />
     <Compile Include="Classes\Npc.cs" />
     <Compile Include="Classes\Player.cs" />
     <Compile Include="GameControl.cs" />
     <Compile Include="Interfaces\IPlayer.cs" />
-    <Compile Include="Log.cs" />
+    <Compile Include="Message.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

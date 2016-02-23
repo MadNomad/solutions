@@ -5,6 +5,7 @@
  * Time: 10:35
  */
 using System;
+using Combats;
 
 namespace Combats
 {
