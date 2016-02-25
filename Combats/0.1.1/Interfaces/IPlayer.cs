@@ -5,6 +5,7 @@
  * Time: 11:38
  */
 using System;
+using Combats.Classes;
 
 namespace Combats
 {

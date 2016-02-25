@@ -9,103 +9,63 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using Combats.Classes;
+using Combats;
 
 namespace Combats
 {
     /// <summary>
     /// Description of MainForm.
     /// </summary>
+
+    public enum Scene
+    {
+        Main,
+        Battle
+    }
+
     public partial class MainForm : Form
     {
-        Presenter presenter;
+//        Presenter presenter;
         public MainForm()
         {
             //
             // The InitializeComponent() call is required for Windows Forms designer support.
             //
             InitializeComponent();
-            presenter = new Presenter(this);
+
+            SwitchScene(Scene.Main);
+
+//            presenter = new MainPresenter(this);
             
             //
             // Add constructor code after the InitializeComponent() call.
             //
         }
-        void ButtonStartGameClick(object sender, EventArgs e)
-        {
-            if (this.textPlayerName1.Text == "")
-            {
-                this.textPlayerName1.BackColor = Color.IndianRed;
-                return;
-            }
-            else
-            {
-                this.textPlayerName1.BackColor = Color.Empty;
-            }
-            presenter.StartNewGame(this.textPlayerName1.Text);
-        }
-        void ButtonNewGameClick(object sender, EventArgs e)
-        {
-            this.panelRadioButtons.Visible = true;
-            this.buttonNewGame.Visible = false;
-            this.richBattleLog.Clear();
-            presenter.StartNewGame(this.labelPlayerName1.Text);
-        }
-        void ButtonRoundClick(object sender, EventArgs e)
-        {
-            string attackPoint = InspectRadioButtons("Attack");
-            string blockPoint = InspectRadioButtons("Block");
 
-            if (!String.IsNullOrEmpty(attackPoint) && !String.IsNullOrEmpty(blockPoint))
-            {
-                ResetCheckedRadioButtons();
-                presenter.NextRound(attackPoint, blockPoint);
-            }
-        }
-        string InspectRadioButtons(string action)
+        public void SwitchScene(Scene scene)
         {
-            if (action == "Attack")
+            UserControl ctrl = null;
+            switch (scene)
             {
-                if (this.panelAttack.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked) != null)
-                {
-                    this.panelAttack.BackColor = Color.Empty;
-                    return this.panelAttack.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked).Text; 
-                }
-                else
-                {
-                    this.panelAttack.BackColor = Color.IndianRed;
-                    return null;
-                }
+                case Scene.Main:
+                    ctrl = new MainUserControl();
+
+                    break;
+
+                case Scene.Battle:
+                    ctrl = new BattleUserControl();
+                    break;
+
+                default:
+                    break;
             }
-            else if (action == "Block")
+            if (ctrl != null)
             {
-                if (this.panelBlock.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked) != null)
-                {
-                    this.panelBlock.BackColor = Color.Empty;
-                    return this.panelBlock.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked).Text;
-                }
-                else
-                {
-                    this.panelBlock.BackColor = Color.IndianRed;
-                    return null;
-                }
-            }
-            else
-            {
-                return null;
+                ctrl.Dock = DockStyle.Fill;
+                mainPanel.Controls.Clear();
+                mainPanel.Controls.Add(ctrl);
             }
         }
-        void ResetCheckedRadioButtons()
-        {
-            this.panelAttack.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked).Checked = false;
-            this.panelBlock.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked).Checked = false;
-        }
-        private void richBattleLogTextChanged(object sender, EventArgs e)
-        {
-            // Set the current caret position at the end
-            richBattleLog.SelectionStart = richBattleLog.Text.Length;
-            // Now scroll it automatically
-            richBattleLog.ScrollToCaret();
-        }
+
     }
 }

@@ -69,10 +69,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Game\GameControl.cs" />
-    <Compile Include="Game\Player\Human.cs" />
-    <Compile Include="Game\Player\Npc.cs" />
-    <Compile Include="Game\Player\Player.cs" />
+    <Compile Include="Classes\Human.cs" />
+    <Compile Include="Classes\Npc.cs" />
+    <Compile Include="Classes\Player.cs" />
+    <Compile Include="GameControl.cs" />
     <Compile Include="Interfaces\IPlayer.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="MainForm.cs">
@@ -81,46 +81,20 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UI\BaseUserConrol.cs" />
-    <Compile Include="UI\Battle\BattleUserControl.cs" />
-    <Compile Include="UI\Battle\BattleUserControl.Designer.cs">
-      <DependentUpon>BattleUserControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Main\MainUserControl.cs" />
-    <Compile Include="UI\Main\MainUserControl.Designer.cs">
-      <DependentUpon>MainUserControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Main\MainUserControl.Designer1.cs">
-      <DependentUpon>MainUserControl.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Game" />
-    <Folder Include="Game\Player" />
-    <Folder Include="Interfaces" />
-    <Folder Include="UI" />
     <Folder Include="Resources\" />
-    <Folder Include="UI\Battle" />
-    <Folder Include="UI\Main" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\Battle\BattleUserControl.resx">
-      <DependentUpon>BattleUserControl.Designer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\Main\MainUserControl.resx">
-      <DependentUpon>MainUserControl.cs</DependentUpon>
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>MainUserControl.Designer1.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
