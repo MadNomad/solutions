@@ -13,23 +13,23 @@ namespace Combats
         /// </summary>
         private System.ComponentModel.IContainer components = null;
         private System.Windows.Forms.GroupBox BattlePage;
-        private System.Windows.Forms.Panel RadioButtons;
-        private System.Windows.Forms.Panel AttackPanel;
-        private System.Windows.Forms.Panel BlockPanel;
+        protected System.Windows.Forms.Panel RadioButtons;
+        protected System.Windows.Forms.Panel AttackPanel;
+        protected System.Windows.Forms.Panel BlockPanel;
         private System.Windows.Forms.Label TextAttackPanel;
         private System.Windows.Forms.Button Attack;
         private System.Windows.Forms.Label TextBlockPanel;
-        private System.Windows.Forms.Button NewBattle;
-        private System.Windows.Forms.ProgressBar FirstPlayerHP;
+        protected System.Windows.Forms.Button NewBattle;
+        protected System.Windows.Forms.ProgressBar FirstPlayerHP;
         private System.Windows.Forms.PictureBox FirstPlayerInfo;
-        private System.Windows.Forms.ProgressBar SecondPlayerHP;
+        protected System.Windows.Forms.ProgressBar SecondPlayerHP;
         private System.Windows.Forms.PictureBox SecondPlayerInfo;
-        private System.Windows.Forms.Label FirstPlayerName;
+        protected System.Windows.Forms.Label FirstPlayerName;
         private System.Windows.Forms.PictureBox SecondPlayerPhoto;
-        private System.Windows.Forms.Label SecondPlayerName;
+        protected System.Windows.Forms.Label SecondPlayerName;
         private System.Windows.Forms.PictureBox FirstPlayerPhoto;
-        private System.Windows.Forms.RichTextBox BattleLog;
-        private System.Windows.Forms.Label BattleResult;
+        protected System.Windows.Forms.RichTextBox BattleLog;
+        protected System.Windows.Forms.Label BattleResult;
         
         /// <summary>
         /// Disposes resources used by the control.
@@ -81,9 +81,7 @@ namespace Combats
             // 
             // BattlePage
             // 
-            this.BattlePage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.BattlePage.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BattlePage.Controls.Add(this.RadioButtons);
             this.BattlePage.Controls.Add(this.NewBattle);
             this.BattlePage.Controls.Add(this.FirstPlayerHP);
@@ -96,14 +94,14 @@ namespace Combats
             this.BattlePage.Controls.Add(this.FirstPlayerPhoto);
             this.BattlePage.Controls.Add(this.BattleLog);
             this.BattlePage.Controls.Add(this.BattleResult);
+            this.BattlePage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BattlePage.Location = new System.Drawing.Point(0, 0);
             this.BattlePage.Margin = new System.Windows.Forms.Padding(0);
             this.BattlePage.Name = "BattlePage";
-            this.BattlePage.Padding = new System.Windows.Forms.Padding(0);
+            this.BattlePage.Padding = new System.Windows.Forms.Padding(5);
             this.BattlePage.Size = new System.Drawing.Size(800, 600);
             this.BattlePage.TabIndex = 14;
             this.BattlePage.TabStop = false;
-            this.BattlePage.Visible = false;
             // 
             // RadioButtons
             // 
@@ -114,7 +112,7 @@ namespace Combats
             this.RadioButtons.Controls.Add(this.TextAttackPanel);
             this.RadioButtons.Controls.Add(this.Attack);
             this.RadioButtons.Controls.Add(this.TextBlockPanel);
-            this.RadioButtons.Location = new System.Drawing.Point(280, 34);
+            this.RadioButtons.Location = new System.Drawing.Point(280, 39);
             this.RadioButtons.MinimumSize = new System.Drawing.Size(240, 180);
             this.RadioButtons.Name = "RadioButtons";
             this.RadioButtons.Size = new System.Drawing.Size(240, 180);
@@ -183,7 +181,7 @@ namespace Combats
             // NewBattle
             // 
             this.NewBattle.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.NewBattle.Location = new System.Drawing.Point(347, 344);
+            this.NewBattle.Location = new System.Drawing.Point(347, 339);
             this.NewBattle.MaximumSize = new System.Drawing.Size(107, 23);
             this.NewBattle.MinimumSize = new System.Drawing.Size(107, 23);
             this.NewBattle.Name = "NewBattle";
@@ -218,7 +216,7 @@ namespace Combats
             // 
             this.SecondPlayerHP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.SecondPlayerHP.ForeColor = System.Drawing.Color.Green;
-            this.SecondPlayerHP.Location = new System.Drawing.Point(612, 34);
+            this.SecondPlayerHP.Location = new System.Drawing.Point(611, 34);
             this.SecondPlayerHP.Name = "SecondPlayerHP";
             this.SecondPlayerHP.Size = new System.Drawing.Size(128, 15);
             this.SecondPlayerHP.Step = 1;
@@ -230,7 +228,7 @@ namespace Combats
             this.SecondPlayerInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.SecondPlayerInfo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SecondPlayerInfo.Image = ((System.Drawing.Image)(resources.GetObject("SecondPlayerInfo.Image")));
-            this.SecondPlayerInfo.Location = new System.Drawing.Point(618, 19);
+            this.SecondPlayerInfo.Location = new System.Drawing.Point(617, 19);
             this.SecondPlayerInfo.Name = "SecondPlayerInfo";
             this.SecondPlayerInfo.Size = new System.Drawing.Size(12, 11);
             this.SecondPlayerInfo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -253,7 +251,7 @@ namespace Combats
             this.SecondPlayerPhoto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.SecondPlayerPhoto.Image = ((System.Drawing.Image)(resources.GetObject("SecondPlayerPhoto.Image")));
             this.SecondPlayerPhoto.InitialImage = null;
-            this.SecondPlayerPhoto.Location = new System.Drawing.Point(612, 55);
+            this.SecondPlayerPhoto.Location = new System.Drawing.Point(611, 55);
             this.SecondPlayerPhoto.Name = "SecondPlayerPhoto";
             this.SecondPlayerPhoto.Size = new System.Drawing.Size(128, 128);
             this.SecondPlayerPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -265,7 +263,7 @@ namespace Combats
             this.SecondPlayerName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.SecondPlayerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.SecondPlayerName.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.SecondPlayerName.Location = new System.Drawing.Point(630, 17);
+            this.SecondPlayerName.Location = new System.Drawing.Point(629, 17);
             this.SecondPlayerName.Name = "SecondPlayerName";
             this.SecondPlayerName.Size = new System.Drawing.Size(110, 14);
             this.SecondPlayerName.TabIndex = 13;
@@ -276,7 +274,7 @@ namespace Combats
             // 
             this.FirstPlayerPhoto.Image = ((System.Drawing.Image)(resources.GetObject("FirstPlayerPhoto.Image")));
             this.FirstPlayerPhoto.InitialImage = null;
-            this.FirstPlayerPhoto.Location = new System.Drawing.Point(59, 60);
+            this.FirstPlayerPhoto.Location = new System.Drawing.Point(59, 55);
             this.FirstPlayerPhoto.Name = "FirstPlayerPhoto";
             this.FirstPlayerPhoto.Size = new System.Drawing.Size(128, 128);
             this.FirstPlayerPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -285,11 +283,13 @@ namespace Combats
             // 
             // BattleLog
             // 
-            this.BattleLog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.BattleLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.BattleLog.Location = new System.Drawing.Point(11, 382);
+            this.BattleLog.Location = new System.Drawing.Point(8, 387);
+            this.BattleLog.MinimumSize = new System.Drawing.Size(600, 162);
             this.BattleLog.Name = "BattleLog";
-            this.BattleLog.Size = new System.Drawing.Size(779, 200);
+            this.BattleLog.Size = new System.Drawing.Size(784, 205);
             this.BattleLog.TabIndex = 11;
             this.BattleLog.Text = "";
             // 
@@ -298,7 +298,7 @@ namespace Combats
             this.BattleResult.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.BattleResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BattleResult.ForeColor = System.Drawing.Color.Red;
-            this.BattleResult.Location = new System.Drawing.Point(280, 88);
+            this.BattleResult.Location = new System.Drawing.Point(280, 93);
             this.BattleResult.Name = "BattleResult";
             this.BattleResult.Size = new System.Drawing.Size(240, 126);
             this.BattleResult.TabIndex = 28;
@@ -310,7 +310,7 @@ namespace Combats
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.BattlePage);
-            this.MinimumSize = new System.Drawing.Size(640, 600);
+            this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "BattleUserControl";
             this.Size = new System.Drawing.Size(800, 600);
             this.BattlePage.ResumeLayout(false);
@@ -322,7 +322,6 @@ namespace Combats
             ((System.ComponentModel.ISupportInitialize)(this.SecondPlayerPhoto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FirstPlayerPhoto)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
     }

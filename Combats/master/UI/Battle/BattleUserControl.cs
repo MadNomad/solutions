@@ -5,8 +5,11 @@
  * Time: 9:59
  */
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace Combats
@@ -16,6 +19,7 @@ namespace Combats
     /// </summary>
     public partial class BattleUserControl : BaseUserConrol
     {
+        BattlePresenter Transport;
         public BattleUserControl()
         {
             //
@@ -23,9 +27,8 @@ namespace Combats
             //
             InitializeComponent();
             
-            //
-            // TODO: Add constructor code after the InitializeComponent() call.
-            //
+            Transport = new BattlePresenter(this);
         }
+        
     }
 }

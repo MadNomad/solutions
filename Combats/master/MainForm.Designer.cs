@@ -44,11 +44,11 @@ namespace Combats
             // 
             // mainPanel
             // 
+            this.mainPanel.AutoSize = true;
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPanel.Location = new System.Drawing.Point(0, 0);
-            this.mainPanel.MinimumSize = new System.Drawing.Size(640, 600);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(784, 600);
+            this.mainPanel.Size = new System.Drawing.Size(784, 562);
             this.mainPanel.TabIndex = 0;
             // 
             // MainForm
@@ -63,6 +63,7 @@ namespace Combats
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Бойцовский клуб";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
     }

@@ -7,6 +7,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Combats;
@@ -25,7 +26,10 @@ namespace Combats
 
     public partial class MainForm : Form
     {
-//        Presenter presenter;
+        public static string PlayerName;
+        public static string RatingFilePath = (Directory.GetCurrentDirectory() + @"\data\records\top.csv");
+        public static Dictionary<string, int> Rating;
+
         public MainForm()
         {
             //

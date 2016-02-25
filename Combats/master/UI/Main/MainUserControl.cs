@@ -23,9 +23,6 @@ namespace Combats
             //
             InitializeComponent();
             
-            //
-            // TODO: Add constructor code after the InitializeComponent() call.
-            //
         }
 
         void StartGameClick(object sender, EventArgs e)
@@ -39,9 +36,8 @@ namespace Combats
             {
                 InputPlayerName.BackColor = Color.Empty;
             }
+            MainForm.PlayerName = InputPlayerName.Text;
             SwitchScene(Scene.Battle);
-            // TODO Чиним дальше
-//            this.labelPlayerName1.Text = InputPlayerName.Text;
         }
     }
 }

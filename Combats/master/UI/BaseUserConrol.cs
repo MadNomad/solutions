@@ -21,5 +21,7 @@ namespace Combats
             var form = this.FindForm() as MainForm;
             form.SwitchScene(targetScene);
         }
+        
+
     }
 }
