@@ -13,23 +13,23 @@ namespace Combats
         /// </summary>
         private System.ComponentModel.IContainer components = null;
         private System.Windows.Forms.GroupBox BattlePage;
-        protected System.Windows.Forms.Panel RadioButtons;
-        protected System.Windows.Forms.Panel AttackPanel;
-        protected System.Windows.Forms.Panel BlockPanel;
+        private System.Windows.Forms.Panel RadioButtons;
+        private System.Windows.Forms.Panel AttackPanel;
+        private System.Windows.Forms.Panel BlockPanel;
         private System.Windows.Forms.Label TextAttackPanel;
         private System.Windows.Forms.Button Attack;
         private System.Windows.Forms.Label TextBlockPanel;
-        protected System.Windows.Forms.Button NewBattle;
-        protected System.Windows.Forms.ProgressBar FirstPlayerHP;
+        private System.Windows.Forms.Button NewBattle;
+        private System.Windows.Forms.ProgressBar FirstPlayerHP;
         private System.Windows.Forms.PictureBox FirstPlayerInfo;
-        protected System.Windows.Forms.ProgressBar SecondPlayerHP;
+        private System.Windows.Forms.ProgressBar SecondPlayerHP;
         private System.Windows.Forms.PictureBox SecondPlayerInfo;
-        protected System.Windows.Forms.Label FirstPlayerName;
+        private System.Windows.Forms.Label FirstPlayerName;
         private System.Windows.Forms.PictureBox SecondPlayerPhoto;
-        protected System.Windows.Forms.Label SecondPlayerName;
+        private System.Windows.Forms.Label SecondPlayerName;
         private System.Windows.Forms.PictureBox FirstPlayerPhoto;
-        protected System.Windows.Forms.RichTextBox BattleLog;
-        protected System.Windows.Forms.Label BattleResult;
+        private System.Windows.Forms.RichTextBox BattleLog;
+        private System.Windows.Forms.Label BattleResult;
         
         /// <summary>
         /// Disposes resources used by the control.
@@ -164,6 +164,7 @@ namespace Combats
             this.Attack.TabIndex = 24;
             this.Attack.Text = "Атаковать";
             this.Attack.UseVisualStyleBackColor = false;
+            this.Attack.Click += new System.EventHandler(this.AttackClick);
             // 
             // TextBlockPanel
             // 
@@ -190,6 +191,7 @@ namespace Combats
             this.NewBattle.Text = "Новый бой";
             this.NewBattle.UseVisualStyleBackColor = true;
             this.NewBattle.Visible = false;
+            this.NewBattle.Click += new System.EventHandler(this.ButtonNewGameClick);
             // 
             // FirstPlayerHP
             // 
@@ -292,6 +294,7 @@ namespace Combats
             this.BattleLog.Size = new System.Drawing.Size(784, 205);
             this.BattleLog.TabIndex = 11;
             this.BattleLog.Text = "";
+            this.BattleLog.TextChanged += new System.EventHandler(this.BattleLogTextChanged);
             // 
             // BattleResult
             // 

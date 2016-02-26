@@ -17,29 +17,26 @@ namespace Combats
     /// <summary>
     /// Description of BattlePresenter.
     /// </summary>
-    public class BattlePresenter : BattleUserControl
+    public class BattlePresenter
     {
         GameControl Battle;
         BattleUserControl View;
         public BattlePresenter(BattleUserControl view)
         {
             View = view;
-            Battle = new GameControl(MainForm.PlayerName);
-            FirstPlayerName.Text = Battle.Human.Name;
-            FirstPlayerHP.Maximum = Battle.Human.Hp;
-            SecondPlayerName.Text = Battle.Npc.Name;
-            SecondPlayerHP.Maximum = Battle.Npc.Hp;
+            Battle = new GameControl(ProgramData.PlayerName);
+            View.BattleFirstPlayerName = Battle.Human.Name;
+            View.BattleFirstPlayerHpMax = Battle.Human.MaxHp;
+            View.BattleSecondPlayerName = Battle.Npc.Name;
+            View.BattleSecondPlayerHpMax = Battle.Npc.MaxHp;
             RefreshHealthProgressBars();
-            CreateRadioButtons();
+            View.CreateRadioButtons();
         }
 
-        public void NextRound(string attackPoint, string blockPoint)
+        public void NextRound(BodyPart attackPoint, BodyPart blockPoint)
         {
             AddToLog("---==================---");
-                Battle.MakeRound(
-                    (BodyPart)Enum.Parse(typeof(BodyPart), attackPoint),
-                    (BodyPart)Enum.Parse(typeof(BodyPart), blockPoint)
-               );
+            ParseInputLog(Battle.MakeRound((BodyPart)attackPoint, (BodyPart)blockPoint));
             RefreshHealthProgressBars();
         }
         
@@ -61,16 +58,16 @@ namespace Combats
                         break;
                     case GameControl.RoundAction.draw:
                         AddToLog(String.Format("{0} : Редкий случай! Ничья!!!", DateTime.Now.ToString("HH:mm:ss")));
-                        RadioButtons.Visible = false;
-                        NewBattle.Visible = true;
-                        BattleResult.Text = "All Dead!";
+                        View.RadioButtonsVisible = false;
+                        View.NewBattleButtonVisible = true;
+                        View.BattleResultMessage = "All Dead!";
                         break;
                     case GameControl.RoundAction.win:
                         AddToLog(String.Format("{0} : И-и-и-и... победил {1}!!!", DateTime.Now.ToString("HH:mm:ss"), temp.Name));
                         IncreaseWinsInTable(temp.Name);
-                        RadioButtons.Visible = false;
-                        NewBattle.Visible = true;
-                        BattleResult.Text = temp.Name + " Win!";
+                        View.RadioButtonsVisible = false;
+                        View.NewBattleButtonVisible = true;
+                        View.BattleResultMessage = temp.Name + " Win!";
                         break;
                     default:
                         AddToLog(String.Format("{0} : Это что-то новенькое! Комментатор не в курсе об этом действии...", DateTime.Now.ToString("HH:mm:ss"), temp.Name));
@@ -82,15 +79,15 @@ namespace Combats
         
         public void AddToLog(string text)
         {
-            BattleLog.Text += text + Environment.NewLine;
+            View.AddBattleLog = text + Environment.NewLine;
         }
         
         void IncreaseWinsInTable(string name)
         {
-            if (CheckFileExist(MainForm.RatingFilePath))
+            if (CheckFileExist(ProgramData.RatingFilePath))
             {
                 bool newPlayer = false;
-                foreach (var record in MainForm.Rating)
+                foreach (var record in ProgramData.Rating)
                 {
                     if (record.Key == name)
                     {
@@ -103,20 +100,20 @@ namespace Combats
                 }
                 if (!newPlayer)
                 {
-                    MainForm.Rating[name] += 1;
+                    ProgramData.Rating[name] += 1;
                 }
                 else
                 {
-                    MainForm.Rating.Add(name, 1);
+                    ProgramData.Rating.Add(name, 1);
                 }
             }
             else
             {
-                using (File.Create(MainForm.RatingFilePath))
+                using (File.Create(ProgramData.RatingFilePath))
                 {
                 }
-                MainForm.Rating = new Dictionary<string, int>();
-                MainForm.Rating.Add(name, 1);
+                ProgramData.Rating = new Dictionary<string, int>();
+                ProgramData.Rating.Add(name, 1);
             }
             SaveRecordsTableToFile();
         }
@@ -135,101 +132,35 @@ namespace Combats
         }
         void SaveRecordsTableToFile()
         {
-            using (StreamWriter sw = new StreamWriter(MainForm.RatingFilePath))
+            using (StreamWriter sw = new StreamWriter(ProgramData.RatingFilePath))
             {
-                foreach (var line in MainForm.Rating)
+                foreach (var line in ProgramData.Rating)
                 {
                     sw.WriteLine("{0};{1}", line.Key, line.Value);
                 }
             }
         }
         
-        void CreateRadioButtons()
-        {
-            NewRadioButtonPanel("Attack");
-            NewRadioButtonPanel("Block");
-        }
-
         public void RefreshHealthProgressBars()
         {
             if (Battle.Human.Hp >= 0)
             {
-                FirstPlayerHP.Value = Battle.Human.Hp;
+                View.BattleFirstPlayerHP = Battle.Human.Hp;
             }
             else
             {
-                FirstPlayerHP.Value = 0;
-            }
-            Int32 currentHumanLifePercent = FirstPlayerHP.Value / FirstPlayerHP.Maximum * 100;
-            if (currentHumanLifePercent < 30)
-            {
-                FirstPlayerHP.ForeColor = Color.Red;
-            }
-            else if (currentHumanLifePercent < 60)
-            {
-                FirstPlayerHP.ForeColor = Color.Yellow;
+                View.BattleFirstPlayerHP = 0;
             }
             
             if (Battle.Npc.Hp >= 0)
             {
-                SecondPlayerHP.Value = Battle.Npc.Hp;
+                View.BattleSecondPlayerHP = Battle.Npc.Hp;
             }
             else
             {
-                SecondPlayerHP.Value = 0;
-            }
-            Int32 currentNpcLifePercent = SecondPlayerHP.Value / SecondPlayerHP.Maximum * 100;
-            if (currentNpcLifePercent < 30)
-            {
-                SecondPlayerHP.ForeColor = Color.Red;
-            }
-            else if (currentNpcLifePercent < 60)
-            {
-                SecondPlayerHP.ForeColor = Color.Yellow;
+                View.BattleSecondPlayerHP = 0;
             }
         }
 
-        void NewRadioButtonPanel(string type)
-        {
-            int items = Enum.GetNames(typeof(BodyPart)).Length;
-            RadioButton[] newPanel = new RadioButton[items];
-            for (int i = 1, point = 4; i < newPanel.Length; point += 30, i++)
-            {
-                newPanel[i] = new System.Windows.Forms.RadioButton();
-                newPanel[i].Location = new System.Drawing.Point(4, point);
-                newPanel[i].Name = "radio" + type + i;
-                newPanel[i].Size = new System.Drawing.Size(107, 24);
-                newPanel[i].TabIndex = 0;
-                newPanel[i].TabStop = true;
-                newPanel[i].Text = GetEnumDescription((BodyPart)i);
-                newPanel[i].Tag = Enum.GetName(typeof(BodyPart), i);
-                newPanel[i].UseVisualStyleBackColor = true;
-                if (type == "Attack")
-                {
-                    AttackPanel.Controls.Add(newPanel[i]);
-                }
-                else if (type == "Block")
-                {
-                    BlockPanel.Controls.Add(newPanel[i]);
-                }
-            }
-        }
-        
-        public static string GetEnumDescription(Enum value)
-        {
-            FieldInfo fi = value.GetType().GetField(value.ToString());
-
-            DescriptionAttribute[] attributes =
-                (DescriptionAttribute[])fi.GetCustomAttributes(
-                    typeof(DescriptionAttribute),
-                    false);
-
-            if (attributes != null &&
-                attributes.Length > 0)
-                return attributes[0].Description;
-            else
-                return value.ToString();
-        }
-        
     }
 }

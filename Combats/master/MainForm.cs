@@ -26,10 +26,6 @@ namespace Combats
 
     public partial class MainForm : Form
     {
-        public static string PlayerName;
-        public static string RatingFilePath = (Directory.GetCurrentDirectory() + @"\data\records\top.csv");
-        public static Dictionary<string, int> Rating;
-
         public MainForm()
         {
             //
