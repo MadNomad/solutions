@@ -6,7 +6,6 @@
  */
 using System;
 using System.Collections.Generic;
-using Forest;
 
 namespace Forest
 {
@@ -14,7 +13,7 @@ namespace Forest
     /// Description of MyClass.
     /// </summary>
     
-    enum season
+    public enum Season
     {
         None,
         Winter,
@@ -25,41 +24,48 @@ namespace Forest
     
     public class Forest
     {
-        season CurrentSeason;
-        List<ITree> TreesInForest = new List<ITree>();
+        public List<Tree> TreesInForest = new List<Tree>();
         
-        Forest()
+        public Forest()
         {
             CurrentSeason = GetSeason(DateTime.Now);
         }
-        
-        public void Born(ITree tree)
+
+        public Season CurrentSeason;
+
+        protected void changeCurrentSeason(DateTime date)
         {
-            TreesInForest.Add(tree);
+            CurrentSeason = GetSeason(date);
         }
-        
-        season GetSeason(DateTime time)
+
+        public void Add(TypeOfTree tree)
+        {
+            TreesInForest.Add(new TreeCreator().Born(tree));
+        }
+
+
+        Season GetSeason(DateTime time)
         {
             switch (time.Month)
             {
                 case 1:
                 case 2:
                 case 12:
-                    return season.Winter;
+                    return Season.Winter;
                 case 3:
                 case 4:
                 case 5:
-                    return season.Spring;
+                    return Season.Spring;
                 case 6:
                 case 7:
                 case 8:
-                    return season.Summer;
+                    return Season.Summer;
                 case 9:
                 case 10:
                 case 11:
-                    return season.Autumn;
+                    return Season.Autumn;
                 default:
-                    return season.Winter;
+                    return Season.Winter;
             }
         }
     }
