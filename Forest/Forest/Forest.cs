@@ -25,13 +25,12 @@ namespace Forest
     public class Forest
     {
         public List<Tree> TreesInForest = new List<Tree>();
+        public Season CurrentSeason;
         
         public Forest()
         {
-            CurrentSeason = GetSeason(DateTime.Now);
+            changeCurrentSeason(DateTime.Now);
         }
-
-        public Season CurrentSeason;
 
         protected void changeCurrentSeason(DateTime date)
         {
@@ -44,9 +43,10 @@ namespace Forest
         }
 
 
-        Season GetSeason(DateTime time)
+        internal Season GetSeason(DateTime time)
         {
-            switch (time.Month)
+            DateTime t = time;
+            switch (t.Month)
             {
                 case 1:
                 case 2:
@@ -65,8 +65,26 @@ namespace Forest
                 case 11:
                     return Season.Autumn;
                 default:
-                    return Season.Winter;
+                    return Season.None;
             }
         }
+        
+        internal Season GetSeason2(DateTime time)
+        {
+            int month = time.Month;
+            
+            if (month == 12 && month < 3)
+                return Season.Winter;
+            
+            if (month >= 3 && month < 6)
+                return Season.Spring;
+            
+            if (month >= 6 && month < 9)
+                return Season.Summer;
+            
+            return Season.Autumn;
+        }
+        
+
     }
 }

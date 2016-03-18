@@ -15,23 +15,28 @@ namespace Forest
     {
         Forest forest = new Forest();
         
+        [SetUp]
+        public void SetUp()
+        {
+//            forest.CurrentSeason = forest.GetSeason(DateTime.Now);
+            forest.Add(TypeOfTree.Fir);
+        }
+
         [Test]
         public void ForestCreateTest()
         {
-            Assert.AreEqual(forest.CurrentSeason, Season.Spring, "Wrong current season in Forest");
+            Assert.AreEqual(Season.Spring, forest.CurrentSeason , "Wrong current season in Forest");
         }
         
         [Test]
         public void AddFirTest()
         {
-            forest.Add(TypeOfTree.Fir);
-            Assert.That(forest.TreesInForest, Has.Member(TypeOfTree.Fir));
+//            Assert.IsTrue(forest.TreesInForest.Find(x => x.Type.Equals(TypeOfTree.Fir) is ));
         }
 
         [Test]
         public void FirWinterColorTest()
         {
-            forest.Add(TypeOfTree.Fir);
             forest.CurrentSeason = Season.Winter;
             Assert.That(forest.TreesInForest.Find(x=> x.Type.Equals(TypeOfTree.Fir)).Color, Is.EqualTo("Green"));
         }
@@ -39,25 +44,22 @@ namespace Forest
         [Test]
         public void FirSummerColorTest()
         {
-            forest.Add(TypeOfTree.Fir);
             forest.CurrentSeason = Season.Summer;
-            Assert.That(forest.TreesInForest.Find(x=> x.Type.Equals(TypeOfTree.Fir)).Color, Is.EqualTo("Green Too"));
+            Assert.That(forest.TreesInForest.Find(x=> x.Type.Equals(TypeOfTree.Fir)).Color, Is.EqualTo("Green"));
         }
         
         [Test]
         public void FirGrowningTest()
         {
-            forest.Add(TypeOfTree.Fir);
             Tree tempFir = forest.TreesInForest.Find(x => x.Type.Equals(TypeOfTree.Fir));
             int tempFirLenght = tempFir.Lenght;
             tempFir.Grow();
-            Assert.Greater(tempFirLenght, tempFir.Lenght);
+            Assert.Greater(tempFir.Lenght, tempFirLenght);
         }
 
         [Test]
         public void FirIsShapelyTest()
         {
-            forest.Add(TypeOfTree.Fir);
             Assert.IsTrue(forest.TreesInForest.Find(x => x.Type.Equals(TypeOfTree.Fir)).Shapely);
         }
         

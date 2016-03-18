@@ -61,19 +61,8 @@ namespace Forest
         {
             get
             {
-                if(CurrentSeason = Season.Winter)
-                {
-                    return "Green";
-                }
-                else if (Forest.CurrentSeason = Season.Summer)
-                {
-                    return "Green Too";
-                }
-                else
-                {
-                    return "Anyway Green";
-                }
-            }
+                return color;
+              }
             set
             {
                 color = value;
