@@ -33,6 +33,7 @@ namespace GameUI
     {
         GameMaster Game;
         BattleUserControl View;
+        
         public BattlePresenter(BattleUserControl view)
         {
             View = view;
@@ -60,30 +61,30 @@ namespace GameUI
             RefreshHealthProgressBars();
         }
 
-        void Player_Blocked(GameCore.IPlayer player, GameCore.IPlayer enemy)
+        void Player_Blocked(GameCore.IPlayer player, string name)
         {
-            AddToLog(String.Format("{0} : {2} старался, но {1} заблокировал удар.", DateTime.Now.ToString("HH:mm:ss"), player.Name, enemy.Name));
+            AddToLog(String.Format("{0} : {2} старался, но {1} заблокировал удар.", DateTime.Now.ToString("HH:mm:ss"), player.Name, name));
         }
 
-        void Player_Wounded(GameCore.IPlayer player, GameCore.IPlayer enemy)
+        void Player_Wounded(GameCore.IPlayer player, string name)
         {
-            AddToLog(String.Format("{0} : Точным ударом {2} нанес {1} урон {3} HP!", DateTime.Now.ToString("HH:mm:ss"), player.Name, enemy.Name, enemy.Damage));
+            AddToLog(String.Format("{0} : Точным ударом {2} нанес {1} урон {3} HP!", DateTime.Now.ToString("HH:mm:ss"), player.Name, name, Game.Battle.Damage));
         }
 
-        void Player_Dead(GameCore.IPlayer player, GameCore.IPlayer enemy)
+        void Player_Dead(GameCore.IPlayer player, string name)
         {
             AddToLog(String.Format("{0} : {1} пошатнулся и упал... Скорая в документах зафиксировала время {0}...", DateTime.Now.ToString("HH:mm:ss"), player.Name));
         }
 
-        void Game_Battle_Lose(GameCore.IPlayer player, GameCore.IPlayer enemy)
+        void Game_Battle_Lose(GameCore.IPlayer player, string name)
         {
-            AddToLog(String.Format("{0} : И-и-и-и... победил {1}!!!", DateTime.Now.ToString("HH:mm:ss"), enemy.Name));
-            IncreaseWinsInTable(enemy.Name);
+            AddToLog(String.Format("{0} : И-и-и-и... победил {1}!!!", DateTime.Now.ToString("HH:mm:ss"), name));
+            IncreaseWinsInTable(name);
             ChangeButtonsVisibility();
             View.BattleResultMessage = player.Name + " Lose!";
         }
 
-        void Game_Battle_Win(GameCore.IPlayer player, GameCore.IPlayer enemy)
+        void Game_Battle_Win(GameCore.IPlayer player, string name)
         {
             AddToLog(String.Format("{0} : Победил {1}!!!", DateTime.Now.ToString("HH:mm:ss"), player.Name));
             IncreaseWinsInTable(player.Name);
@@ -91,9 +92,9 @@ namespace GameUI
             View.BattleResultMessage = player.Name + " Win!";
         }
 
-        void Game_Battle_Draw(GameCore.IPlayer player, GameCore.IPlayer enemy)
+        void Game_Battle_Draw(GameCore.IPlayer player, string name)
         {
-            AddToLog(String.Format("{0} : {1} и {2} попадали в разные стороны!", DateTime.Now.ToString("HH:mm:ss"), player.Name, enemy.Name ));
+            AddToLog(String.Format("{0} : {1} и {2} попадали в разные стороны!", DateTime.Now.ToString("HH:mm:ss"), player.Name, name));
             AddToLog(String.Format("{0} : Редкий случай! Ничья!!!", DateTime.Now.ToString("HH:mm:ss")));
             ChangeButtonsVisibility();
             View.BattleResultMessage = "All Dead!";
