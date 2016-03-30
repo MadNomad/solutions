@@ -16,8 +16,8 @@ namespace GameCore
     
     public class GameMaster
     {
-        public Human Human;
-        public Npc Npc;
+        public IPlayer Human;
+        public IPlayer Npc;
         public Battle Battle;
         
         public GameMaster(string name)
@@ -46,13 +46,21 @@ namespace GameCore
         {
             //            TODO Загрузка игры персонажа playerName из файла
         }
+        
+        internal bool CheckExistingPlayer(string playerName)
+        {
+            using (DataContext db = new DataContext())
+            {
+                return true;
+            }
+        }
 
         internal void GetPrize(IPlayer player)
         {
             //            TODO Реализовать получение опыта/уровня.
         }
 
-        void Battle_Win(IPlayer player, IPlayer enemy)
+        void Battle_Win(IPlayer player, string name)
         {
             //            TODO Обработка ивента выигрыша
             

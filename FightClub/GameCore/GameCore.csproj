@@ -31,13 +31,24 @@
     <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.SharpDevelop.6.0.2\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.SharpDevelop.6.0.2\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -45,20 +56,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Battle.cs" />
-    <Compile Include="Classes\Player\Human.cs" />
-    <Compile Include="Classes\Player\Npc.cs" />
-    <Compile Include="Classes\Player\Player.cs" />
-    <Compile Include="Classes\Player\PlayerDefaultValue.cs" />
-    <Compile Include="Classes\Player\PlayerEventArgs.cs" />
+    <Compile Include="Classes\DataContext.cs" />
+    <Compile Include="Player\Human.cs" />
+    <Compile Include="Player\Npc.cs" />
+    <Compile Include="Player\Player.cs" />
+    <Compile Include="Player\PlayerDefaultValue.cs" />
+    <Compile Include="Player\PlayerEventArgs.cs" />
+    <Compile Include="Data\GameRating.cs" />
     <Compile Include="GameMaster.cs" />
     <Compile Include="Interfaces\IBattle.cs" />
     <Compile Include="Interfaces\IPlayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Classes\Player" />
-    <Folder Include="Interfaces" />
-    <Folder Include="Classes" />
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
 </Project>

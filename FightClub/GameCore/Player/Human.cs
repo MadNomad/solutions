@@ -13,14 +13,11 @@ namespace GameCore
     /// </summary>
     public class Human : Player
     {
-        public Human(string name = "Jack", int hp = PlayerDefaultValue.defaultHp, int maxHp = PlayerDefaultValue.defaultMaxHp, int damage = PlayerDefaultValue.defaultDamage)
+        public Human(string name)
         {
             if (String.IsNullOrWhiteSpace(name))
             {
                 Name = "Jack";
-                Hp = hp;
-                MaxHp = maxHp;
-                Damage = damage;
             }
             else
             {
@@ -29,7 +26,7 @@ namespace GameCore
             IsHumanAttacker = true;
         }
         bool isHumanAttacker;
-        public virtual bool IsHumanAttacker
+        public bool IsHumanAttacker
         {
             get { return isHumanAttacker; }
             set { isHumanAttacker = IsHumanAttacker; }

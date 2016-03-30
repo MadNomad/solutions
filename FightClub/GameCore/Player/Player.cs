@@ -15,25 +15,60 @@ namespace GameCore
         public virtual event PlayerEvent Blocked;
         public virtual event PlayerEvent Dead;
         
-        public virtual void GetHit(Player enemy)
+        //        public virtual void GetHit(Player enemy)
+        //        {
+        //            if (BlockPoint != enemy.AttackPoint)
+        //            {
+        //                Hp -= enemy.Damage;
+        //                if (Wounded != null)
+        //                {
+        //                    Wounded(this, enemy);
+        //                }
+        //            }
+        //            else
+        //            {
+        //                if (Blocked != null)
+        //                {
+        //                    Blocked(this, enemy);
+        //                }
+        //            }
+        //        }
+
+        public virtual void GetHit(BodyPart part, string name)
         {
-            if (BlockPoint != enemy.AttackPoint)
+            if (BlockPoint != part)
             {
-                Hp -= enemy.Damage;
+                Hp -= Damage;
                 if (Wounded != null)
                 {
-                    Wounded(this, enemy);
+                    Wounded(this, name);
                 }
             }
             else
             {
                 if (Blocked != null)
                 {
-                    Blocked(this, enemy);
+                    Blocked(this, name);
                 }
             }
         }
-        
+        public virtual void SetBlock(BodyPart part, string name)
+        {
+            if (AttackPoint == part)
+            {
+                if (Wounded != null)
+                {
+                    Wounded(this, name);
+                }
+            }
+            else
+            {
+                if (Blocked != null)
+                {
+                    Blocked(this, name);
+                }
+            }
+        }
         string name;
         public virtual string Name
         {

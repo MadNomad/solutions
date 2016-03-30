@@ -20,7 +20,7 @@ namespace GameCore
         Legs
     }
     
-    public delegate void PlayerEvent(IPlayer player, IPlayer enemy);
+    public delegate void PlayerEvent(IPlayer player, string name);
 
     public interface IPlayer
     {
@@ -28,9 +28,10 @@ namespace GameCore
         int MaxHp { get; }
         int Hp { get; }
         int Damage { get; }
-        BodyPart AttackPoint { get; }
-        BodyPart BlockPoint { get; }
-        void GetHit(Player enemy);
+        BodyPart AttackPoint { get; set; }
+        BodyPart BlockPoint { get; set; }
+        void GetHit(BodyPart part, string name);
+        void SetBlock(BodyPart part, string name);
         event PlayerEvent Wounded;
         event PlayerEvent Blocked;
         event PlayerEvent Dead;

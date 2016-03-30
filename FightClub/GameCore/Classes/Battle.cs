@@ -13,10 +13,11 @@ namespace GameCore
     /// </summary>
     public class Battle : IBattle
     {
-        Human human;
-        Npc npc;
+        IPlayer human;
+        IPlayer npc;
+        public int Damage = PlayerDefaultValue.defaultDamage;
         
-        public delegate void BattleEvent(IPlayer player, IPlayer enemy);
+        public delegate void BattleEvent(IPlayer player, string name);
         
         public virtual event BattleEvent Draw;
         public virtual event BattleEvent Win;
@@ -25,7 +26,7 @@ namespace GameCore
         
         
 
-        public Battle(Human human, Npc npc)
+        public Battle(IPlayer human, IPlayer npc)
         {
             this.human = human;
             this.npc = npc;
@@ -42,53 +43,51 @@ namespace GameCore
             
             human.AttackPoint = attackPoint;
             human.BlockPoint = blockPoint;
-            npc.GenerateBodyPoints();
+            npc.AttackPoint = GenRandPart();
+            npc.BlockPoint = GenRandPart();
 
-            if (human.IsHumanAttacker)
-            {
-                human.GetHit(npc);
-                npc.GetHit(human);
-                human.IsHumanAttacker = false;
-            }
-            else
-            {
-                npc.GetHit(human);
-                human.GetHit(npc);
-                human.IsHumanAttacker = true;
-            }
+            human.GetHit(npc.AttackPoint, npc.Name);
+            npc.GetHit(human.AttackPoint, human.Name);
 
             if (human.Hp <= 0 && npc.Hp <= 0)
             {
                 if (Draw != null)
                 {
-                    Draw(human, npc);
+                    Draw(human, npc.Name);
                 }
             }
             else if (human.Hp <= 0)
             {
                 if (Dead != null)
                 {
-                    Dead(human, npc);
+                    Dead(human, npc.Name);
                 }
                 if (Lose != null)
                 {
-                    Lose(human, npc);
+                    Lose(human, npc.Name);
                 }
             }
             else if (npc.Hp <= 0)
             {
                 if (Dead != null)
                 {
-                    Dead(npc, human);
+                    Dead(npc, human.Name);
                 }
                 if (Win != null)
                 {
-                    Win(human, npc);
+                    Win(human, npc.Name);
                 }
             }
 
         }
 
+        Random rnd = new Random();
+
+        BodyPart GenRandPart()
+        {
+            int items = Enum.GetNames(typeof(BodyPart)).Length;
+            return (BodyPart)rnd.Next(1, items);
+        }
         #endregion
     }
 }
