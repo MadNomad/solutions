@@ -24,8 +24,10 @@ namespace GameData.Entity
         Legs
     }
 
-    public class BattleLog : BaseEntity
+    public class BattleLog
     {
+        public Int64 Id { get; set; }
+        public DateTime Date { get; set; }
         public Player FirstPlayer { get; set; }
         public Player SecondPlayer { get; set; }
         public BodyPart Part { get; set; }

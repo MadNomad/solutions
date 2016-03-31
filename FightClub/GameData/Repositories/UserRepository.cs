@@ -30,7 +30,7 @@ namespace GameData.Repositories
         
         public IEnumerable<User> GetAll()
         {
-            return db.Users;
+            return db.Users.ToList();
         }
         
         public User GetById(int id)

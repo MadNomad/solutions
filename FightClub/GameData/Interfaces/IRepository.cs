@@ -13,7 +13,7 @@ namespace GameData.Interfaces
     /// <summary>
     /// Description of IRepository.
     /// </summary>
-    public interface IRepository<T> where T : BaseEntity
+    public interface IRepository<T> where T : class
     {
         IEnumerable<T> GetAll();
         T GetById(int id);

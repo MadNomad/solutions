@@ -31,7 +31,7 @@ namespace GameData.Repositories
 
         public void Save()
         {
-            throw new NotImplementedException();
+            db.SaveChanges();
         }
 
         public IRepository<GameData.Entity.User> Users

@@ -25,8 +25,10 @@ namespace GameData.Entity
         PvP
     }
     
-    public class Battle : BaseEntity
+    public class Battle
     {
+        public Int64 Id { get; set; }
+        public DateTime Date { get; set; }
         public BattleType Type { get; set; }
         public Player FirstPlayer { get; set; }
         public Player SecondPlayer { get; set; }

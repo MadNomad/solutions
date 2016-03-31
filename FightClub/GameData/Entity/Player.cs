@@ -11,9 +11,11 @@ namespace GameData.Entity
     /// <summary>
     /// Description of Player.
     /// </summary>
-    public class Player : BaseEntity
+    public class Player
     {
-        public Int64 User { get; set; }
+        public Guid Id { get; set; }
+        public DateTime Date { get; set; }
+        public Guid UserId { get; set; }
         public string Name { get; set; }
         public int Hp { get; set; }
         public int MaxHP { get; set; }

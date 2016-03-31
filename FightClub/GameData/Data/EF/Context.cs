@@ -24,30 +24,14 @@ namespace GameData.Data.EF
         public DbSet<Battle> Battles { get; set; }
         public DbSet<BattleLog> BattleLogs { get; set; }
         
-        static Context()
+        public Context()
+            : base ("name=Context")
         {
-            Database.SetInitializer<Context>(new StoreDbInitializer());
         }
         
         public Context(string connectionString)
             : base(connectionString)
         {
-        }
-    }
-
-    public class StoreDbInitializer : DropCreateDatabaseAlways<Context>
-    {
-        protected override void Seed(Context db)
-        {
-            Guid newPlayer = Guid.NewGuid();
-            db.Users.Add(new User {
-                             Login = "TestUser",
-                             Password = "testpass",
-                             EMail = "testuser@madnomad.ru",
-                             IsEMailValid = false,
-                             Player = newPlayer
-                         });
-            db.SaveChanges();
         }
     }
 }

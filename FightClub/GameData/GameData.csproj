@@ -60,7 +60,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\EF\Context.cs" />
-    <Compile Include="Entity\BaseEntity.cs" />
     <Compile Include="Entity\Battle.cs" />
     <Compile Include="Entity\BattleLog.cs" />
     <Compile Include="Entity\Player.cs" />
@@ -72,6 +71,11 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603302210012_init.cs" />
+    <Compile Include="Migrations\201603302210012_init.Designer.cs">
+      <DependentUpon>201603302210012_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
@@ -81,6 +85,7 @@
     <Compile Include="Repositories\UnitOfWork.cs" />
     <Compile Include="Repositories\UserBillingTransactionRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="UI\Presenter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -91,7 +96,16 @@
     <Folder Include="Data\EF" />
     <Folder Include="Entity" />
     <Folder Include="Interfaces" />
+    <Folder Include="UI" />
     <Folder Include="Repositories" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603302210012_init.resx">
+      <DependentUpon>201603302210012_init.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
