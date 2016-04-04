@@ -13,7 +13,7 @@ namespace GameData.Entity
     /// </summary>
     public class Player
     {
-        public Guid Id { get; set; }
+        public Int64 Id { get; set; }
         public DateTime Date { get; set; }
         public Guid UserId { get; set; }
         public string Name { get; set; }

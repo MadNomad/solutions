@@ -32,7 +32,7 @@ namespace GameData.Repositories
             return db.Players;
         }
 
-        public Player GetById(int id)
+        public Player GetById(Int64 id)
         {
             return db.Players.Find(id);
         }
@@ -52,7 +52,7 @@ namespace GameData.Repositories
             db.Entry(item).State = EntityState.Modified;
         }
 
-        public void Delete(int id)
+        public void Delete(Int64 id)
         {
             Player player = db.Players.Find(id);
             if (player != null)

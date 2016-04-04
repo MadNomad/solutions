@@ -33,7 +33,7 @@ namespace GameData.Repositories
             return db.UserBillingTransactions;
         }
 
-        public UserBillingTransaction GetById(int id)
+        public UserBillingTransaction GetById(Int64 id)
         {
             return db.UserBillingTransactions.Find(id);
         }
@@ -53,7 +53,7 @@ namespace GameData.Repositories
             db.Entry(item).State = EntityState.Modified;
         }
 
-        public void Delete(int id)
+        public void Delete(Int64 id)
         {
             UserBillingTransaction transaction = db.UserBillingTransactions.Find(id);
             if (transaction != null)

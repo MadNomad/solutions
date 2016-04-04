@@ -65,15 +65,16 @@
     <Compile Include="Entity\Player.cs" />
     <Compile Include="Entity\User.cs" />
     <Compile Include="Entity\UserBillingTransaction.cs" />
+    <Compile Include="Interfaces\IMainForm.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="MainForm.cs" />
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603302210012_init.cs" />
-    <Compile Include="Migrations\201603302210012_init.Designer.cs">
-      <DependentUpon>201603302210012_init.cs</DependentUpon>
+    <Compile Include="Migrations\201604040947126_init.cs" />
+    <Compile Include="Migrations\201604040947126_init.Designer.cs">
+      <DependentUpon>201604040947126_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
@@ -103,8 +104,8 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603302210012_init.resx">
-      <DependentUpon>201603302210012_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201604040947126_init.resx">
+      <DependentUpon>201604040947126_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

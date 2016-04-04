@@ -16,8 +16,8 @@ namespace GameData.Migrations
                         Part = c.Int(nullable: false),
                         Result = c.Int(nullable: false),
                         HitValue = c.Int(nullable: false),
-                        FirstPlayer_Id = c.Guid(),
-                        SecondPlayer_Id = c.Guid(),
+                        FirstPlayer_Id = c.Long(),
+                        SecondPlayer_Id = c.Long(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Players", t => t.FirstPlayer_Id)
@@ -29,7 +29,7 @@ namespace GameData.Migrations
                 "dbo.Players",
                 c => new
                     {
-                        Id = c.Guid(nullable: false),
+                        Id = c.Long(nullable: false, identity: true),
                         Date = c.DateTime(nullable: false),
                         UserId = c.Guid(nullable: false),
                         Name = c.String(),
@@ -50,8 +50,8 @@ namespace GameData.Migrations
                         LogId = c.Long(nullable: false),
                         Result = c.Int(nullable: false),
                         ExpGained = c.Int(nullable: false),
-                        FirstPlayer_Id = c.Guid(),
-                        SecondPlayer_Id = c.Guid(),
+                        FirstPlayer_Id = c.Long(),
+                        SecondPlayer_Id = c.Long(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Players", t => t.FirstPlayer_Id)
@@ -68,7 +68,7 @@ namespace GameData.Migrations
                         TransactionId = c.Guid(nullable: false),
                         Description = c.String(),
                         Sum = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        User_Id = c.Guid(),
+                        User_Id = c.Long(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Users", t => t.User_Id)
@@ -78,7 +78,8 @@ namespace GameData.Migrations
                 "dbo.Users",
                 c => new
                     {
-                        Id = c.Guid(nullable: false),
+                        Id = c.Long(nullable: false, identity: true),
+                        UserId = c.Guid(nullable: false),
                         Date = c.DateTime(nullable: false),
                         Login = c.String(),
                         Password = c.String(),

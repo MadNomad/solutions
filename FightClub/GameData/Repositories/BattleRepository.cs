@@ -33,7 +33,7 @@ namespace GameData.Repositories
             return db.Battles;
         }
 
-        public Battle GetById(int id)
+        public Battle GetById(Int64 id)
         {
             return db.Battles.Find(id);
         }
@@ -53,7 +53,7 @@ namespace GameData.Repositories
             db.Entry(item).State = EntityState.Modified;
         }
 
-        public void Delete(int id)
+        public void Delete(Int64 id)
         {
             Battle battle = db.Battles.Find(id);
             if (battle != null)

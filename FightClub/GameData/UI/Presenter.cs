@@ -7,6 +7,8 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core;
+using System.Drawing;
+using System.Windows.Forms;
 using GameData.Data.EF;
 using GameData.Entity;
 using GameData.Interfaces;
@@ -28,17 +30,17 @@ namespace GameData.UI
             database = new UnitOfWork(new Context());
         }
         
-        public void PresentAllUsersInDataView()
+        public void LoadAllUsersInDataGrid(DataGridView datagrid)
         {
-            UpdateUserDataGrid();
-            AutoSizeCols();
+            UpdateDataGrid(datagrid);
+            AutoSizeCols(datagrid);
         }
         
-        public void PresenterAddUser(string login, string password, string email, bool isValidMail)
+        public void AddUser(string login, string password, string email, bool isValidMail)
         {
             var newUser = new User
             {
-                Id = Guid.NewGuid(),
+                UserId = Guid.NewGuid(),
                 Date = DateTime.Now,
                 Login = login,
                 Password = password,
@@ -48,29 +50,66 @@ namespace GameData.UI
             };
             
             database.Users.Create(newUser);
-            database.Save();
-            UpdateUserDataGrid();
-            AutoSizeCols();
-
-        }
-
-        public void UpdateUserDataGrid()
-        {
-            view.UsersDataView.DataSource = database.Users.GetAll();
+            Save();
         }
         
-        void AutoSizeCols()
+        public void EditUser (Int64 id, Guid userId, Guid playerId, DateTime date, string login, string password, string userEmail, bool isValidEmail)
         {
-            for (int i = 0; i < view.UsersDataView.Columns.Count - 1; i++)
+            User user = database.Users.GetById(id);
+            user.Login = login;
+            user.Password = password;
+            user.EMail = userEmail;
+            user.IsEMailValid = isValidEmail;
+            database.Users.Update(user);
+            Save();
+        }
+
+        public void DeleteUser(Int64 id)
+        {
+            database.Users.Delete(id);
+            Save();
+        }
+        
+        void Save()
+        {
+            database.Save();
+            ClearEditForm(view.UserForm);
+            UpdateDataGrid(view.UsersDataView);
+            AutoSizeCols(view.UsersDataView);
+        }
+        public void UpdateDataGrid(DataGridView datagrid)
+        {
+            datagrid.DataSource = database.Users.GetAll();
+        }
+        
+        public void FilterUserlistByValidetedEmail()
+        {
+//            view.UsersDataView.DataSource = database.Users
+        }
+        
+        void ClearEditForm(GroupBox group)
+        {
+            foreach (Control control in group.Controls)
             {
-                view.UsersDataView.Columns[i].AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+                if (control.GetType() == typeof(TextBox))
+                {
+                    control.Text = null;
+                    control.BackColor = Color.Empty;
+                }
             }
-            view.UsersDataView.Columns[view.UsersDataView.Columns.Count - 1].AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            for (int i = 0; i < view.UsersDataView.Columns.Count; i++)
+        }
+        void AutoSizeCols(DataGridView datagrid)
+        {
+            for (int i = 0; i < datagrid.Columns.Count - 1; i++)
             {
-                int colw = view.UsersDataView.Columns[i].Width;
-                view.UsersDataView.Columns[i].AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-                view.UsersDataView.Columns[i].Width = colw;
+                datagrid.Columns[i].AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            }
+            datagrid.Columns[datagrid.Columns.Count - 1].AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            for (int i = 0; i < datagrid.Columns.Count; i++)
+            {
+                int colw = datagrid.Columns[i].Width;
+                datagrid.Columns[i].AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+                datagrid.Columns[i].Width = colw;
             }
         }
     }

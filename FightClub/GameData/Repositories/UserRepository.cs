@@ -33,7 +33,7 @@ namespace GameData.Repositories
             return db.Users.ToList();
         }
         
-        public User GetById(int id)
+        public User GetById(Int64 id)
         {
             return db.Users.Find(id);
         }
@@ -53,7 +53,7 @@ namespace GameData.Repositories
             db.Entry(item).State = EntityState.Modified;
         }
         
-        public void Delete(int id)
+        public void Delete(Int64 id)
         {
             User user = db.Users.Find(id);
             if (user != null)
@@ -61,7 +61,6 @@ namespace GameData.Repositories
                 db.Users.Remove(user);
             }
         }
-        
         #endregion
     }
 }
