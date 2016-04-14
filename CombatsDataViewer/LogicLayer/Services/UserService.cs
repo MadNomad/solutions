@@ -6,8 +6,10 @@
  */
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using DataLayer.Entities;
 using DataLayer.Interfaces;
+using DataLayer.Repositories;
 using LogicLayer.DataObject;
 using LogicLayer.Interfaces;
 
@@ -18,17 +20,16 @@ namespace LogicLayer.Services
     /// </summary>
     public class UserService : IUserService
     {
-        IServiceRepository db { get; set; }
-        
-        public UserService(IServiceRepository service)
+        IServiceRepository db;
+        public UserService(string connectionService)
         {
-            db = service;
+            db = new ServiceRepository(connectionService);
         }
         
-        public IEnumerable<UserDTO> GetAllUsers()
+        public List<UserDTO> GetAllUsers()
         {
             List<UserDTO> users = new List<UserDTO>();
-            var dbUsers = db.Users.GetAll();
+            List<User> dbUsers = db.Users.GetAll().ToList();
             foreach (User u in dbUsers)
             {
                 users.Add(new UserDTO
@@ -38,7 +39,7 @@ namespace LogicLayer.Services
                         Password = u.Password,
                         EMail = u.EMail,
                         IsEMailValidated = u.IsEMailValid,
-                        CharacterName = u.Character.Name,
+                        CharacterName = u.Character.ToString(),
                         RegistrationDate = u.Date
                     });
             }
@@ -69,9 +70,23 @@ namespace LogicLayer.Services
                 Password = user.Password,
                 EMail = user.EMail,
                 IsEMailValid = user.IsEMailValidated,
-                Date = DateTime.Now
+                Date = user.RegistrationDate
             };
             db.Users.Create(u);
+            db.Save();
+            if (!String.IsNullOrWhiteSpace(user.CharacterName))
+            {
+                u = (User)db.Users.GetAll().Where(x => x.Login == u.Login);
+                Player player = new Player
+                {
+                    UserId = u.Id,
+                    Name = user.CharacterName,
+                    Date = DateTime.Now,
+                    Statistics = new PlayerStatistic { }
+                };
+                db.Players.Create(player);
+                db.Save();
+            }
         }
         
         public void EditUser(UserDTO user)

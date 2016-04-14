@@ -15,7 +15,7 @@ namespace LogicLayer.Interfaces
     /// </summary>
     public interface IUserService
     {
-        IEnumerable<UserDTO> GetAllUsers();
+        List<UserDTO> GetAllUsers();
         UserDTO GetUser(int userId);
         void AddUser(UserDTO user);
         void EditUser(UserDTO user);
