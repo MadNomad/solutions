@@ -23,7 +23,7 @@ namespace DataLayer.EF
         public DbSet<BattleLog> BattleLogs { get; set; }
 
         public Context()
-            : base ("name=dbExternal")
+            : base ("name=dbLocal")
         {
         }
         

@@ -87,7 +87,7 @@ namespace DataLayer.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         Date = c.DateTime(nullable: false),
                         Description = c.String(),
-                        Sum = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        Sum = c.Decimal(precision: 18, scale: 2),
                         User_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)

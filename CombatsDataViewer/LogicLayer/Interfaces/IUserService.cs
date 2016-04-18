@@ -19,5 +19,10 @@ namespace LogicLayer.Interfaces
         UserDTO GetUser(int userId);
         void AddUser(UserDTO user);
         void EditUser(UserDTO user);
+        List<UserDTO> GetUsersBySearchString(string word);
+        List<UserDTO> GetLastTenUsers();
+        List<UserDTO> GetUsersWithValidEMail();
+        List<UserDTO> GetTopTenDonators();
+        PlayerDTO GetCharacterStatistic(int userId);
     }
 }
